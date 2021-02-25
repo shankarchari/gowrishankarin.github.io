@@ -14,11 +14,11 @@ Gowri is an Electrical Engineer from University of Madras, he started his career
 
 He has authored and published 3 research papers on Computational Neuro Science and Pattern Recognition during his research tenure at Telecommunication and Computer Networks Group (TeNet-Group) of Indian Institute of Technology (IIT-Madras).
 
-Gowri Shankar for whom learning is a life long activity continues doing so by associating himself with Oxford University (courses on Western Classical, South American dance), Indian Institute of Science-Bangalore (IISc-Digital Signal Processing), Alliance Francaise (French). He is passionate about Mathematics, Cycling and an ardent follower of Shri Ramchandra Mission where he meditates and practices Raja Yoga. 
+Gowri Shankar for whom learning is a life long activity continues doing so by associating himself with Oxford University (courses on Western Classical, South American dance), Indian Institute of Science-Bangalore (IISc-Digital Signal Processing), Alliance Francaise (French). He is passionate about Mathematics, Cycling and an ardent follower of Shri Ramchandra Mission where he meditates and practices Raja Yoga.
 
-
- - **Kaggle**: [https://kaggle.com/gowrishankarin](https://kaggle.com/gowrishankarin)
- - **LinkedIn**: [https://linkedin.com/in/gowrishankarin](https://linkedin.com/in/gowrishankarin)
- - **Twitter**: [https://twitter.com/gowrishankarin](https://twitter.com/gowrishankarin)
- - **RPubs**: [https://rpubs.com/gowrishankarin](https://rpubs.com/gowrishankarin)
- - **GitHub**: [https://github.com/gowrishankarin](https://github.com/gowrishankarin)
+- **Kaggle**: [https://kaggle.com/gowrishankarin](https://kaggle.com/gowrishankarin)
+- **LinkedIn**: [https://linkedin.com/in/gowrishankarin](https://linkedin.com/in/gowrishankarin)
+- **Twitter**: [https://twitter.com/gowrishankarin](https://twitter.com/gowrishankarin)
+- **RPubs**: [https://rpubs.com/gowrishankarin](https://rpubs.com/gowrishankarin)
+- **GitHub**: [https://github.com/gowrishankarin](https://github.com/gowrishankarin)
+  
