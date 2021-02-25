@@ -1,5 +1,5 @@
 ---
-title: "Quick Start"
+title: "Research"
 description: "One page summary of how to start a new Doks project."
 lead: "One page summary of how to start a new Doks project."
 date: 2020-11-16T13:59:39+01:00
@@ -13,11 +13,11 @@ weight: 110
 toc: true
 ---
 
-## Requirements
+## Patents
 
 Doks uses npm to install dependencies and run commands. Installing npm is pretty simple. Download and install [Node.js](https://nodejs.org/) (it includes npm) for your platform.
 
-## Start a new Doks project
+## Publications
 
 Create a new site, change directories, install dependencies, and start development server.
 
