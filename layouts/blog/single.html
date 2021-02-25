@@ -10,5 +10,10 @@
       {{ .Content }}
     </article>
   </div>
+  {{ if ne .Params.toc false -}}
+  <nav class="docs-toc d-none d-xl-block col-xl-4" aria-label="Secondary navigation">
+      {{ partial "sidebar/docs-toc.html" . }}
+  </nav>
+  {{ end -}}
 </div>
 {{ end }}
