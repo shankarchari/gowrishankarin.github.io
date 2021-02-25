@@ -22,7 +22,7 @@
 
 [[main]]
   name = "Contact"
-  url = "/contact/"
+  url = "/contributors/gowrishankar"
   weight = 30
 
 [[social]]
