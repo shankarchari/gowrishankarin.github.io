@@ -1,23 +1,22 @@
 {{ define "main" }}
-<div class="row">
-  <div class="col-md-12">
-    <article>
-      <h1 class="text-left">{{ .Title }}</h1>
-      <div class="text-left">{{ .Content }}</div>
-			<div class="card-list">			
-				{{ range .Data.Pages -}}
-					<div class="card">
-						<div class="card-body">
-							<h2 class="h3"><a class="stretched-link text-body" href="{{ .Permalink }}">{{ .Params.title }}</a></h2>
-							{{ if eq .Section "blog" -}}
-								<p>{{ .Params.lead | safeHTML }}</p>
-								{{ partial "main/blog-meta.html" . -}}
-							{{ end -}}
-						</div>
-					</div>
-				{{ end -}}
-			</div>
-    </article>
-  </div>
+<div class="row flex-xl-nowrap">
+    {{ if ne .Params.toc false -}}
+    <nav class="docs-toc d-none d-xl-block col-xl-6" aria-label="Secondary navigation">
+        {{ partial "sidebar/contact.html" . }}
+    </nav>
+    {{ end -}}
+    {{ if .Params.toc -}}
+    <main class="docs-content col-lg-11 col-xl-10">
+    {{ else -}}
+    <main class="docs-content col-lg-11 col-xl-10 mx-xl-auto">
+    {{ end -}}
+        <h1>{{ .Title }}</h1>
+        <p class="lead">{{ .Params.lead | safeHTML }}</p>
+        {{ partial "main/headline-hash.html" .Content }}
+        {{ if .Site.Params.editPage -}}
+            {{ partial "main/edit-page.html" . }}
+        {{ end -}}
+        {{ partial "main/docs-navigation.html" . }}
+    </main>
 </div>
 {{ end }}

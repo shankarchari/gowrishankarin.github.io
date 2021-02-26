@@ -1,10 +1,29 @@
 ---
-title: "Gowri Shankar"
-description: ""
+title: "About Me"
+description: "Gowri Shankar"
+lead: "Gowri Shankar"
 date: 2021-02-25T12:34:36+05:30
 lastmod: 2021-02-25T12:34:36+05:30
 draft: false
 images: []
+toc: true
+image: "https://upload.wikimedia.org/wikipedia/commons/6/6e/The_Fountain_Head_%281943_1st_ed%29_-_Ayn_Rand.jpg"
+contact: [{
+    title: "Kaggle",
+    link: "https://kaggle.com/gowrishankarin"
+}, {
+    title: "LinkedIn",
+    link: "https://linkedin.com/in/gowrishankarin"
+},{
+    title: "Twitter",
+    link: "https://twitter.com/gowrishankarin"
+},{
+    title: "RPubs",
+    link: "https://rpubs.com/gowrishankarin"
+},{
+    title: "GitHub",
+    link: "https://github.com/gowrishankarin"
+}]
 ---
 
 Software Professional with 17+ Yrs Exp in Multiple Technologies, Diverse Domain Expertise:
@@ -15,10 +34,3 @@ Gowri is an Electrical Engineer from University of Madras, he started his career
 He has authored and published 3 research papers on Computational Neuro Science and Pattern Recognition during his research tenure at Telecommunication and Computer Networks Group (TeNet-Group) of Indian Institute of Technology (IIT-Madras).
 
 Gowri Shankar for whom learning is a life long activity continues doing so by associating himself with Oxford University (courses on Western Classical, South American dance), Indian Institute of Science-Bangalore (IISc-Digital Signal Processing), Alliance Francaise (French). He is passionate about Mathematics, Cycling and an ardent follower of Shri Ramchandra Mission where he meditates and practices Raja Yoga.
-
-- **Kaggle**: [https://kaggle.com/gowrishankarin](https://kaggle.com/gowrishankarin)
-- **LinkedIn**: [https://linkedin.com/in/gowrishankarin](https://linkedin.com/in/gowrishankarin)
-- **Twitter**: [https://twitter.com/gowrishankarin](https://twitter.com/gowrishankarin)
-- **RPubs**: [https://rpubs.com/gowrishankarin](https://rpubs.com/gowrishankarin)
-- **GitHub**: [https://github.com/gowrishankarin](https://github.com/gowrishankarin)
-  

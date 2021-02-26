@@ -1,0 +1,20 @@
+
+<h3 class="text-center">{{  .Params.lead }}</h3> 
+<div class="text-center">
+    <img src="{{ .Params.image }}" alt="Square" class="border-2" height=220 >
+</div>
+<section class="section section-sm">
+    <div class="container">
+        <h2 class="text-left">Contact Me</h2>
+        {{ range .Params.contact -}}
+        <div class="row justify-content-left text-left">
+            
+            <strong >{{ .title }}: </strong>
+            <p><a href="{{ .link }}" target="_blank">{{ .link }}</a></p>
+            
+        </div>
+        {{ end -}}
+    </div>
+</section>
+
+
