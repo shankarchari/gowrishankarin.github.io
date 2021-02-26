@@ -17,32 +17,34 @@ writes: [{
     link: "blog/time-and-space-complexity-5-governing-rules",
     image: ""
 }]
+
 reads: [{
-    title: "Time and Space Complexity - 5 Governing Rules",
-    lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
-    link: "blog/time-and-space-complexity-5-governing-rules",
+    title: "Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting - GOOGLE RESEARCH",
+    lead: "Multi-horizon forecasting problems often contain a complex mix of inputs -- including static (i.e. time-invariant) covariates, known future inputs, and other exogenous time series that are only observed historically -- without any prior information on how they interact with the target.",
+    link: "https://arxiv.org/abs/1912.09363",
     image: ""
 }, {
-    title: "Time and Space Complexity - 5 Governing Rules",
-    lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
-    link: "blog/time-and-space-complexity-5-governing-rules",
+    title: "Using AI to read Chest X-Rays for Tuberculosis Detection and evaluation of multiple DL systems - NATURE",
+    lead: "Deep learning (DL) is used to interpret chest xrays (CXR) to screen and triage people for pulmonary tuberculosis (TB). This study have compared multiple DL systems and populations with a retrospective evaluation of 3 DL systems.",
+    link: "https://www.nature.com/articles/s41598-019-51503-3.pdf",
     image: ""
 }, {
-    title: "Time and Space Complexity - 5 Governing Rules",
+    title: "How venture capitalists are deforming capitalism - Letters from Silicon Valley - NEWYORKER",
     lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
-    link: "blog/time-and-space-complexity-5-governing-rules",
+    link: "https://www.newyorker.com/magazine/2020/11/30/how-venture-capitalists-are-deforming-capitalism",
     image: ""
 }, {
-    title: "Time and Space Complexity - 5 Governing Rules",
+    title: "Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization - IEEE/ICCV",
     lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
-    link: "blog/time-and-space-complexity-5-governing-rules",
+    link: "https://arxiv.org/abs/1610.02391",
     image: ""
 }, {
-    title: "Time and Space Complexity - 5 Governing Rules",
-    lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
-    link: "blog/time-and-space-complexity-5-governing-rules",
+    title: "Evolve Your Brain: The Science of Changing Your Mind by Joe Dispenza - BOOK",
+    lead: "Ever wonder why you repeat the same negative thoughts in your head? Why you keep coming back for more from hurtful family members, friends, or significant others?",
+    link: "https://www.goodreads.com/book/show/640892.Evolve_Your_Brain",
     image: ""
 }]
+
 watch: [{
     title: "Quantum, Manifolds & Symmetries in ML",
     lead: "Conversation with Prof. Max Welling on Deep Learning with non-Euclidean geometric data like graphs/topology or allowing networks to recognize new symmetries",
@@ -70,7 +72,7 @@ watch: [{
     image: ""
 }, {
     title: "Overfitting and Underfitting in Machine Learning",
-    lead: "In vidoes, 2 PhD students are talking about overfitting and underfitting, super important concepts to understand about ML models in a intuitive way.",
+    lead: "In this video, 2 PhD students are talking about overfitting and underfitting, super important concepts to understand about ML models in an intuitive way.",
     link: "https://www.youtube.com/watch?v=2azSqdp-_EY",
     image: ""
 }, {

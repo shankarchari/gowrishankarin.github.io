@@ -44,7 +44,7 @@
 <section class="section container-fluid mt-n3 pb-3">
     <div class="row justify-content-center">
       <div class="col-lg-12 text-center">
-        <h2 class="mt-0">Selected Reads</h2>
+        <h2 class="mt-0">Selected Reads - Papers, Articles, Books</h2>
       </div>
     </div>
 </section>
@@ -54,7 +54,7 @@
         {{ range .Params.reads -}}
             <div class="col-lg-5">
                 <h2 class="h4">{{ .title }}</h2>
-                <p>{{ .lead }} <a href="{{ .link }}">read...</a></p>
+                <p>{{ .lead }} <a href="{{ .link }}" target="_blank">read...</a></p>
             </div>
         {{ end -}}
     </div>
@@ -66,7 +66,7 @@
 <section class="section container-fluid mt-n3 pb-3">
     <div class="row justify-content-center">
       <div class="col-lg-12 text-center">
-        <h2 class="mt-0">Selected Watch</h2>
+        <h2 class="mt-0">Selected Watch - Social Media/OTT Content</h2>
       </div>
     </div>
 </section>
@@ -76,7 +76,7 @@
         {{ range .Params.watch -}}
             <div class="col-lg-5">
                 <h2 class="h4">{{ .title }}</h2>
-                <p>{{ .lead }} <a href="{{ .link }}">watch...</a></p>
+                <p>{{ .lead }} <a href="{{ .link }}" target="_blank">watch...</a></p>
             </div>
         {{ end -}}
     </div>
