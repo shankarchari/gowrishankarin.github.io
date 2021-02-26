@@ -3,8 +3,8 @@
 ## Homepage
 title = "Gowri Shankar"
 titleSeparator = "-"
-titleAddition = "Modern Documentation Theme"
-description = "Doks is a Hugo theme helping you build modern documentation websites that are secure, fast, and SEO-ready — by default."
+titleAddition = "Portfolio of Gowri Shankar"
+description = "PRINCIPAL ARCHITECT | PRODUCT OWNER | DATA SCIENCE ENTHUSIAST | KAGGLE EXPERT | SOFTWARE QUALITY FREAK 18+ Years, A Heartful Programmer"
 
 ## Open Graph + Twitter Cards
 images = ["doks.png"]
@@ -23,7 +23,7 @@ schemaGitHub = "https://github.com/gowrishankarin"
 schemaSection = "blog"
 
 ## Sitelinks Search Box
-siteLinksSearchBox = false
+siteLinksSearchBox = true
 
 ## Chrome Browser
 themeColor = "#fff"
