@@ -9,8 +9,7 @@ images: []
 menu: 
   docs:
     parent: "about"
-weight: 100
+weight: 20
 toc: true
 ---
 
-<!-- {{< img src="introduction.jpg" alt="Introduction" caption="Introduction" >}} -->
