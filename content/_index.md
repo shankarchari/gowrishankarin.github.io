@@ -27,6 +27,26 @@ reads: [{
     lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
     link: "blog/time-and-space-complexity-5-governing-rules",
     image: ""
+}, {
+    title: "Time and Space Complexity - 5 Governing Rules",
+    lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
+    link: "blog/time-and-space-complexity-5-governing-rules",
+    image: ""
+}, {
+    title: "Time and Space Complexity - 5 Governing Rules",
+    lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
+    link: "blog/time-and-space-complexity-5-governing-rules",
+    image: ""
+}, {
+    title: "Time and Space Complexity - 5 Governing Rules",
+    lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
+    link: "blog/time-and-space-complexity-5-governing-rules",
+    image: ""
+}, {
+    title: "Time and Space Complexity - 5 Governing Rules",
+    lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
+    link: "blog/time-and-space-complexity-5-governing-rules",
+    image: ""
 }]
 watch: [{
     title: "Time and Space Complexity - 5 Governing Rules",
