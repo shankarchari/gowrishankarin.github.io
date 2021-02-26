@@ -1,5 +1,5 @@
 ---
-title: "Specializations"
+title: "Independent Courses"
 description: "Help Doks."
 lead: "Under Construction"
 date: 2020-10-06T08:49:15+00:00
@@ -9,6 +9,6 @@ images: []
 menu: 
   docs:
     parent: "courses"
-weight: 210
+weight: 220
 toc: true
 ---

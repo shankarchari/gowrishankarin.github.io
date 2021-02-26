@@ -5,6 +5,7 @@ date: 2021-02-25T19:25:12+02:00
 lastmod: 2021-02-25T19:25:12+02:00
 draft: false
 images: []
+toc: true
 ---
 
 Software Professional with 17+ Yrs Exp in Multiple Technologies, Diverse Domain Expertise:
