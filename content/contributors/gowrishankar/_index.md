@@ -7,7 +7,7 @@ lastmod: 2021-02-25T12:34:36+05:30
 draft: false
 images: []
 toc: true
-image: "https://upload.wikimedia.org/wikipedia/commons/6/6e/The_Fountain_Head_%281943_1st_ed%29_-_Ayn_Rand.jpg"
+image: "/contributors/gowrishankar/profile.png"
 contact: [{
     title: "Kaggle",
     link: "https://kaggle.com/gowrishankarin"

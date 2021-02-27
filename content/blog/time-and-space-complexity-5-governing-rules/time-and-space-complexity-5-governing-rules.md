@@ -8,7 +8,7 @@ draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
-image: "https://divamgupta.com/assets/images/posts/imgseg/teaser.png"
+image: "/blog/time-and-space-complexity-5-governing-rules/teaser.png"
 ---
 
 ## Story Behind

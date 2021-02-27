@@ -8,4 +8,5 @@ draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
+image: "/reads/the_fountainhead/book.jpg"
 ---
