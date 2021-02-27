@@ -8,7 +8,7 @@ draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
-image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/tensorflow2-feature-engg-metrics/teaser.png"
+image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/tensorflow-2-introduction-feature-engineering-and-metrics/teaser.png"
 ---
 
 # Tensorflow 2: Introduction, Feature Engineering and Metrics

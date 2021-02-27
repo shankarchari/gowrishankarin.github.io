@@ -25,7 +25,7 @@ writes: [{
     title: "Tensorflow 2: Introduction, Feature Engineering and Metrics",
     lead: "Introducing TF2 through Train, Test, Valid splitting, Imputation, Bias/Overfit handlers, One Hot Encoding, Embeddings, Tensor Slices, Keras APIs, metrics including accuracy, precision and ROC curve",
     link: "blog/tensorflow-2-introduction-feature-engineering-and-metrics/",
-    image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/tensorflow2-feature-engg-metrics/teaser.png"
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/tensorflow-2-introduction-feature-engineering-and-metrics/teaser.png"
 }]
 
 reads: [{
