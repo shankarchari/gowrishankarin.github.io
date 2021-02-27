@@ -25,6 +25,8 @@ books: [{
     author: "Siddhartha Mukherjee",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/the_gene.jpg"
 }, 
+
+
 {
     title: "Outliers",
     author: "Malcom Gladwell",
@@ -45,6 +47,8 @@ books: [{
     author: "Malcom Gladwell",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/talking_to_strangers.jpg"
 }, 
+
+
 {
     title: "Surely You're Joking, Mr.Feynman",
     author: "Richard P. Feynman",
@@ -65,6 +69,8 @@ books: [{
     author: "Dale Carnegie",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/how_to_win_friends.jpg"
 }, 
+
+
 {
     title: "The Vegetarian",
     author: "Han Kang",
@@ -85,6 +91,8 @@ books: [{
     author: "Yuval Noah Harari",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/homo_deus.jpg"
 }, 
+
+
 {
     title: "21 Lessons for the 21st Century",
     author: "Yuval Noah Harari",
@@ -105,6 +113,8 @@ books: [{
     author: "Robert Kanigel",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/man_who_knew_infinity.jpg"
 }, 
+
+
 {
     title: "Straight from the Gut",
     author: "John F. Welch",
@@ -125,6 +135,8 @@ books: [{
     author: "Akio Morita",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/made_in_japan.jpg"
 }, 
+
+
 {
     title: "First, Break All The Rules",
     author: "Marcus Buckingham, Curt Coffman",
@@ -145,6 +157,8 @@ books: [{
     author: "Lee Iacocca",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/iacocca.jpg"
 }, 
+
+
 {
     title: "Tuesdays with Morrie",
     author: "Mitch Albom",
