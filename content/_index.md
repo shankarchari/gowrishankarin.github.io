@@ -10,7 +10,7 @@ writes: [{
     title: "GradCAM, Model Interpretability - VGG16 & Xception Networks",
     lead: "The objective of this post is to understand the importance of Visual Explanations for CNN based large scale Deep Neural Network Models.",
     link: "blog/gradcam-model-interpretability-vgg16-xception-networks/",
-    image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/gradcam-model-interpretability-vgg16-xception/anime.gif"
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/gradcam-model-interpretability-vgg16-xception-networks/anime.gif"
 }, {
     title: "ResNet50 vs InceptionV3 vs Xception vs NASNet - Introduction to Transfer Learning",
     lead: "Transfer learning is an ML methodology that enables to reuse a model developed for one task to another task. The applications are predominantly in Deep Learning for computer vision and natural language processing.",
