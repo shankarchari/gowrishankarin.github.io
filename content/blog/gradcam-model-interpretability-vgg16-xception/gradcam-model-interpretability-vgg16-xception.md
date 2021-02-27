@@ -8,7 +8,7 @@ draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
-image: "/blog/gradcam-model-interpretability-vgg16-xception/anime.gif"
+image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/gradcam-model-interpretability-vgg16-xception/anime.gif"
 ---
 
 ```python
