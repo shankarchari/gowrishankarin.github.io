@@ -1,6 +1,6 @@
 ---
 title: "Education"
-description: "Doks is a Hugo theme helping you build modern documentation websites that are secure, fast, and SEO-ready — by default."
+description: "Portfolio of Gowri Shankar - Perpetual Learner - Principal Architect - Product Owner - Data Science Enthusiast - Kaggle Expert - Co-Founder - A Heartful Programmer"
 lead: ""
 date: 2020-10-06T08:48:57+00:00
 lastmod: 2020-10-06T08:48:57+00:00

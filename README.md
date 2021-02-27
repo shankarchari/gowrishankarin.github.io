@@ -13,7 +13,7 @@
 </h3>
 
 <p align="center">
-  Doks is a Hugo theme helping you build modern documentation websites that are secure, fast, and SEO-ready — by default.
+  Portfolio of Gowri Shankar - Perpetual Learner - Principal Architect - Product Owner - Data Science Enthusiast - Kaggle Expert - Co-Founder - A Heartful Programmer
 </p>
 
 <p align="center">
