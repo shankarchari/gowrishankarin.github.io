@@ -46,11 +46,6 @@ books: [{
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/talking_to_strangers.jpg"
 }, 
 {
-    title: "The Vegetarian",
-    author: "Han Kang",
-    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/the_vegetarian.jpg"
-}, 
-{
     title: "Surely You're Joking, Mr.Feynman",
     author: "Richard P. Feynman",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/surely_you_are_joking.jpg"
@@ -59,6 +54,61 @@ books: [{
     title: "Teachings of Vivekananda",
     author: "Vivekananda",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/teachings_of_vivekananda.jpg"
+}, 
+{
+    title: "A Short History of Nearly Everything",
+    author: "Bill Bryson",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/short_history_everything.jpg"
+}, 
+{
+    title: "How to Win Friends and Influence People",
+    author: "Dale Carnegie",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/how_to_win_friends.jpg"
+}, 
+{
+    title: "The Vegetarian",
+    author: "Han Kang",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2https://gowrishankarin.github.io/gowrishankarin_2/reads/images/the_vegetarian.jpg"
+}, 
+{
+    title: "Sapiens",
+    author: "Yuval Noah Harari",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/sapiens.jpg"
+}, 
+{
+    title: "Disgrace",
+    author: "John Maxwell Coetzee",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/disgrace.jpg"
+}, 
+{
+    title: "Homo Deus",
+    author: "Yuval Noah Harari",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/homo_deus.jpg"
+}, 
+{
+    title: "21 Lessons for the 21st Century",
+    author: "Yuval Noah Harari",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/21_lessons_21_century.jpg"
+}, 
+{
+    title: "One Hundred Years of Solitude",
+    author: "Gabriel García Márquez",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/100_years_solitude.jpg"
+}, 
+{
+    title: "The Subtle Art of Not Giving a Fuck",
+    author: "Mark Manson",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/the_subtle_art_of_not_giving.png"
+}, 
+{
+    title: "The Man Who Knew Infinity",
+    author: "Robert Kanigel",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/man_who_knew_infinity.jpg"
+}, 
+{
+    title: "Straight from the Gut",
+    author: "John F. Welch",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/straight_from_the_gut.jpg"
 }
 ]
 ---
