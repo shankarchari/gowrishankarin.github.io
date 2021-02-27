@@ -28,9 +28,12 @@
             {{ range .Params.writes -}}
                 <div class="card">
                     <div class="card-body">
-                        <h3 class="h4"><a class="stretched-link text-body" href="{{ .link }}">{{ .title }}</a></h3>
-                        <p class="text-left">{{ .lead | safeHTML }}</p>
-                        <!-- {{ partial "main/blog-meta.html" . -}} -->
+                        <div>
+                            <img style="float: left; margin: 0px 15px 35px 0px;" src="{{ .image }}" width=220>
+                            <h3 class="h4"><a class="stretched-link text-body text-left" href="{{ .link }}">{{ .title }}</a></h3>
+                            <p class="text-left">{{ .lead | safeHTML }}</p>
+                            <!-- {{ partial "main/blog-meta.html" . -}} -->
+                        </div>
                     </div>
                 </div>
             {{ end -}}

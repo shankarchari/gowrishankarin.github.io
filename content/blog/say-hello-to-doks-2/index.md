@@ -8,4 +8,5 @@ draft: false
 weight: 50
 images: []
 contributors: ["Gowri Shankar"]
+image: "https://divamgupta.com/assets/images/posts/imgseg/teaser.png"
 ---

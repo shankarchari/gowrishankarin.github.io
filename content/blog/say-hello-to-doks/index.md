@@ -8,4 +8,5 @@ draft: false
 weight: 50
 images: ["say-hello-to-doks.png"]
 contributors: ["Henk Verlinde"]
+image: "https://divamgupta.com/assets/images/posts/imgseg/teaser.png"
 ---
