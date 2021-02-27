@@ -68,7 +68,7 @@ books: [{
 {
     title: "The Vegetarian",
     author: "Han Kang",
-    image: "https://gowrishankarin.github.io/gowrishankarin_2https://gowrishankarin.github.io/gowrishankarin_2/reads/images/the_vegetarian.jpg"
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/the_vegetarian.jpg"
 }, 
 {
     title: "Sapiens",
@@ -109,6 +109,51 @@ books: [{
     title: "Straight from the Gut",
     author: "John F. Welch",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/straight_from_the_gut.jpg"
+}, 
+{
+    title: "Metamorphosis",
+    author: "Franz Kafka",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/metamorphosis.jpg"
+}, 
+{
+    title: "On The Beach",
+    author: "Nevil Shute",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/on_the_beach.jpg"
+}, 
+{
+    title: "Made in Japan",
+    author: "Akio Morita",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/made_in_japan.jpg"
+}, 
+{
+    title: "First, Break All The Rules",
+    author: "Marcus Buckingham, Curt Coffman",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/first_break_all_rules.jpg"
+}, 
+{
+    title: "The Monk Who Sold His Ferrari",
+    author: "Robin Sharma",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/monk_sold_ferrari.jpg"
+}, 
+{
+    title: "The Difficulty of Being Good",
+    author: "Gurcharan Das",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/difficulty_of_being_good.jpg"
+}, 
+{
+    title: "Iacocca: An Autobiography",
+    author: "Lee Iacocca",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/iacocca.jpg"
+}, 
+{
+    title: "Tuesdays with Morrie",
+    author: "Mitch Albom",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/tuesdays_with_morrie.jpg"
+}, 
+{
+    title: "Julian Assange: The Unauthorised Autobiography",
+    author: "Andrew O'Hagan and Julian Assange",
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/julian_assange.jpg"
 }
 ]
 ---
