@@ -8,7 +8,7 @@ draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
-image: "/blog/time-and-space-complexity-5-governing-rules/teaser.png"
+image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/time-and-space-complexity-5-governing-rules/teaser.png"
 ---
 
 ## Story Behind

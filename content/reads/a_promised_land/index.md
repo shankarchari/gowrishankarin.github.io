@@ -8,5 +8,5 @@ draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
-image: "/reads/a_promised_land/book.png"
+image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/a_promised_land/book.png"
 ---

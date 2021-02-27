@@ -7,7 +7,7 @@ lastmod: 2021-02-25T12:34:36+05:30
 draft: false
 images: []
 toc: true
-image: "/contributors/gowrishankar/profile.png"
+image: "https://gowrishankarin.github.io/gowrishankarin_2/contributors/gowrishankar/profile.png"
 contact: [{
     title: "Kaggle",
     link: "https://kaggle.com/gowrishankarin"
