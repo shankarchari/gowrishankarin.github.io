@@ -8,7 +8,7 @@ draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
-image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/roll-ur-sleeves-let-s-do-some-partial-derivatives/output_3_0.png"
+image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/roll-your-sleeves-let-us-do-some-partial-derivatives./output_3_0.png"
 ---
 
 ```python

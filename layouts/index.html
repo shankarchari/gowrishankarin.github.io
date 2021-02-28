@@ -2,7 +2,7 @@
 <section class="section container-fluid mt-n3 pb-3">
   <div class="row justify-content-center">
     <div class="col-lg-12 text-center">
-      <h2 class="mt-0">{{ .Title }}</h2>
+      <h3 class="mt-0">{{ .Title }}</h3>
     </div>
     <div class="col-12 text-center">
       <p class="lead">{{ .Params.lead | safeHTML }}</p>
@@ -11,10 +11,11 @@
     </div>
   </div>
 </section>
+<hr>
 {{ end }}
 
 {{ define "sidebar-prefooter" }}
-<section class="section container-fluid mt-n3 pb-3">
+<section class="section container-fluid mt-n5 pb-0">
     <div class="row justify-content-center">
       <div class="col-lg-12 text-center">
         <h2 class="mt-0">Selected Writes</h2>
@@ -41,10 +42,11 @@
     </div>
   </div>
 </section>
+<hr>
 {{ end }}
 
 {{ define "sidebar-prefooter-2" }}
-<section class="section container-fluid mt-n3 pb-3">
+<section class="section container-fluid mt-n5 pb-0">
     <div class="row justify-content-center">
       <div class="col-lg-12 text-center">
         <h2 class="mt-0">Selected Reads - Papers, Articles, Books</h2>
@@ -59,14 +61,15 @@
                 <h2 class="h4">{{ .title }}</h2>
                 <p>{{ .lead }} <a href="{{ .link }}" target="_blank">read...</a></p>
             </div>
-        {{ end -}}
+        {{ end -}}       
     </div>
   </div>
+  <hr>  
 </section>
 {{ end }}
 
 {{ define "sidebar-prefooter-3" }}
-<section class="section container-fluid mt-n3 pb-3">
+<section class="section container-fluid mt-n5 pb-0">
     <div class="row justify-content-center">
       <div class="col-lg-12 text-center">
         <h2 class="mt-0">Selected Watch - Social Media/OTT Content</h2>
@@ -84,6 +87,7 @@
         {{ end -}}
     </div>
   </div>
+  <hr>
 </section>
 {{ end }}
 
