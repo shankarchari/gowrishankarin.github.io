@@ -1,5 +1,5 @@
 ---
-title : "Portfolio of Gowri Shankar"
+title : "Frequentist or Bayesian, Who am I?"
 description: "Portfolio of Gowri Shankar - Perpetual Learner - Principal Architect - Product Owner - Data Science Enthusiast - Kaggle Expert - Co-Founder - A Heartful Programmer"
 lead: "I am a Software Architect and an Independent Researcher who has designed and developed several products from Ideation to Go To Market through my career. I have tremendous enthusiasm to learn new things and make them work. My passion is Programming and Mathematics for Deep Learning and Artificial Intelligence. My focus area is Computer Vison and Temporal Sequences for Prediction and Forecasting."
 date: 2020-10-06T08:47:36+00:00
