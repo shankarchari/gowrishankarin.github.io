@@ -2,8 +2,8 @@
 title: "Time and Space Complexity - 5 Governing Rules"
 description: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion."
 lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion."
-date: 2020-11-04T09:19:42+01:00
-lastmod: 2020-11-04T09:19:42+01:00
+date: 2020-02-28T09:19:42+01:00
+lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
 images: []

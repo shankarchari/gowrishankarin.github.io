@@ -2,16 +2,14 @@
 title: "Tensorflow 2: Introduction, Feature Engineering and Metrics"
 description: "Introducing TF2 through Train, Test, Valid splitting, Imputation, Bias/Overfit handlers, One Hot Encoding, Embeddings, Tensor Slices, Keras APIs, metrics including accuracy, precision and ROC curve"
 lead: "Introducing TF2 through Train, Test, Valid splitting, Imputation, Bias/Overfit handlers, One Hot Encoding, Embeddings, Tensor Slices, Keras APIs, metrics including accuracy, precision and ROC curve"
-date: 2020-11-04T09:19:42+01:00
-lastmod: 2020-11-04T09:19:42+01:00
+date: 2020-04-04T09:19:42+01:00
+lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
 image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/tensorflow-2-introduction-feature-engineering-and-metrics/teaser.png"
 ---
-
-# Tensorflow 2: Introduction, Feature Engineering and Metrics
 
 ### Objective
 The key objective of this kernel is 

@@ -2,8 +2,8 @@
 title: "Roll your sleeves! Let us do some partial derivatives."
 description: "In this post, we shall explore a shallow neural network with a single hidden layer and the math behind back propagation algorithm, gradient descent"
 lead: "In this post, we shall explore a shallow neural network with a single hidden layer and the math behind back propagation algorithm, gradient descent"
-date: 2020-11-04T09:19:42+01:00
-lastmod: 2020-11-04T09:19:42+01:00
+date: 2020-08-14T09:19:42+01:00
+lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
 images: []
@@ -15,7 +15,7 @@ image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/roll-your-sleeves
 from IPython.display import Image
 ```
 
-# Forward and Backpropagation Algorithm
+## Forward and Backpropagation Algorithm
 
 An associated source code will be published shortly.
 

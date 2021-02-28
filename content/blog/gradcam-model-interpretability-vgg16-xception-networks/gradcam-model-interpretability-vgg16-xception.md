@@ -2,14 +2,32 @@
 title: "GradCAM, Model Interpretability - VGG16 & Xception Networks"
 description: "The objective of this post is to understand the importance of Visual Explanations for CNN based large scale Deep Neural Network Models."
 lead: "The objective of this post is to understand the importance of Visual Explanations for CNN based large scale Deep Neural Network Models."
-date: 2020-11-04T09:19:42+01:00
-lastmod: 2020-11-04T09:19:42+01:00
+date: 2020-07-04T09:19:42+01:00
+lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
 image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/gradcam-model-interpretability-vgg16-xception-networks/anime.gif"
 ---
+
+### Objective
+
+The objective of this post is to understand the importance of "Visual Explanations" for CNN based large scale Deep Neural Network Models.  
+I will be proud if one feels, this post is nothing but a commentary on **R.R Selvaraju et al** paper in **IEEE ICCV, 2017** title [Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization](https://ieeexplore.ieee.org/document/8237336)
+
+### Goal 
+Decipher these Formulas and Program them using Keras and Numpy
+$$y_c = \frac{\partial{y^c}}{\partial{A^k}}$$
+
+$$Weights_{NeuronImportance} = \alpha^c_k = \frac{1}{Z} \sum_{i=1}^u \sum_{i=1}^{v} y_c$$
+$$i.e.$$
+$$\alpha^c_k = \frac{1}{Z} \sum_{i=1}^u \sum_{i=1}^{v} \frac{\partial{y^c}}{\partial{A^k}}$$
+
+**Top 6 Predictions and GradCAM Heatmaps of VGG16 for a Sample Image**
+
+![Heatmap](https://raw.githubusercontent.com/gowrishankarin/data_science/master/topics/dl/model_explanation/anime.gif)
+
 
 ```python
 # This Python 3 environment comes with many helpful analytics libraries installed
@@ -60,24 +78,6 @@ import matplotlib.cm as cm
 FILE_PATH = "/kaggle/input/sample-images/"
 ```
 
-# GradCAM, Model Interpretability - VGG16 & Xception Networks
-
-### Objective
-
-The objective of this post is to understand the importance of "Visual Explanations" for CNN based large scale Deep Neural Network Models.  
-I will be proud if one feels, this post is nothing but a commentary on **R.R Selvaraju et al** paper in **IEEE ICCV, 2017** title [Grad-CAM: Visual Explanations from Deep Networks via Gradient-Based Localization](https://ieeexplore.ieee.org/document/8237336)
-
-### Goal 
-Decipher these Formulas and Program them using Keras and Numpy
-$$y_c = \frac{\partial{y^c}}{\partial{A^k}}$$
-
-$$Weights_{NeuronImportance} = \alpha^c_k = \frac{1}{Z} \sum_{i=1}^u \sum_{i=1}^{v} y_c$$
-$$i.e.$$
-$$\alpha^c_k = \frac{1}{Z} \sum_{i=1}^u \sum_{i=1}^{v} \frac{\partial{y^c}}{\partial{A^k}}$$
-
-**Top 6 Predictions and GradCAM Heatmaps of VGG16 for a Sample Image**
-
-![Heatmap](https://raw.githubusercontent.com/gowrishankarin/data_science/master/topics/dl/model_explanation/anime.gif)
 
 
 ```python

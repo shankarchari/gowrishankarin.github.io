@@ -2,8 +2,8 @@
 title: "ResNet50 vs InceptionV3 vs Xception vs NASNet - Introduction to Transfer Learning"
 description: "Transfer learning is an ML methodology that enables to reuse a model developed for one task to another task. The applications are predominantly in Deep Learning for computer vision and natural language processing."
 lead: "Transfer learning is an ML methodology that enables to reuse a model developed for one task to another task. The applications are predominantly in Deep Learning for computer vision and natural language processing."
-date: 2020-11-04T09:19:42+01:00
-lastmod: 2020-11-04T09:19:42+01:00
+date: 2019-06-28T09:19:42+01:00
+lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
 images: []
