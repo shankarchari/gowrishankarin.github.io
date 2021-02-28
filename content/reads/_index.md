@@ -74,22 +74,22 @@ books: [{
 {
     title: "Down Memory Lane",
     author: "Parthasarathi Rajagopalachari",
-    image: "/reads/images/down_memory_lane.jpg"
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/down_memory_lane.jpg"
 }, 
 {
     title: "Reality At Dawn",
     author: "Ram Chandra of Shahjahanpur",
-    image: "/reads/images/reality_at_dawn.jpg"
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/reality_at_dawn.jpg"
 }, 
 {
     title: "My Master",
     author: "Parthasarathi Rajagopalachari",
-    image: "/reads/images/my_master.jpg"
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/my_master.jpg"
 }, 
 {
     title: "சிங்கநெஞ்சம் (Tamil)",
     author: "Parthasarathi Rajagopalachari",
-    image: "/reads/images/singa_nenjam.jpg"
+    image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/singa_nenjam.jpg"
 }, 
 
 
