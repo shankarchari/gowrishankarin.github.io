@@ -1,6 +1,6 @@
 ---
 title: "Patents & Publications"
-description: "One page summary of how to start a new Doks project."
+description: "Summary of my patent grants and publications"
 lead: "Summary of my patent grants and publications"
 date: 2020-11-16T13:59:39+01:00
 lastmod: 2020-11-16T13:59:39+01:00

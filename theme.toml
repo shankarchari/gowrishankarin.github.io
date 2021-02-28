@@ -8,5 +8,5 @@ features = ["security aware", "fast by default", "seo-ready", "development tools
 min_version = "0.75.0"
 
 [author]
-  name = "Henk Verlinde"
-  homepage = "https://henkverlinde.com/"
+  name = "Gowri Shankar"
+  homepage = "https://gowrishankar.info/"

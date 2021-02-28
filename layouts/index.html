@@ -18,7 +18,7 @@
 <section class="section container-fluid mt-n5 pb-0">
     <div class="row justify-content-center">
       <div class="col-lg-12 text-center">
-        <h2 class="mt-0">Selected Writes</h2>
+        <h3 class="mt-0">Selected Writes</h3>
       </div>
     </div>
 </section>
@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <div>
                             <img style="float: left; margin: 0px 15px 35px 0px;" src="{{ .image }}" width=220>
-                            <h3 class="h4"><a class="stretched-link text-body text-left" href="{{ .link }}">{{ .title }}</a></h3>
+                            <h5 class="h5"><a class="stretched-link text-body text-left" href="{{ .link }}">{{ .title }}</a></h3>
                             <p class="text-left">{{ .lead | safeHTML }}</p>
                             <!-- {{ partial "main/blog-meta.html" . -}} -->
                         </div>
@@ -49,7 +49,7 @@
 <section class="section container-fluid mt-n5 pb-0">
     <div class="row justify-content-center">
       <div class="col-lg-12 text-center">
-        <h2 class="mt-0">Selected Reads - Papers, Articles, Books</h2>
+        <h3 class="mt-0">Selected Reads - Papers, Articles, Books</h3>
       </div>
     </div>
 </section>
@@ -58,7 +58,7 @@
     <div class="row justify-content-center text-center">
         {{ range .Params.reads -}}
             <div class="col-lg-5">
-                <h2 class="h4">{{ .title }}</h2>
+                <h5 class="h5">{{ .title }}</h5>
                 <p>{{ .lead }} <a href="{{ .link }}" target="_blank">read...</a></p>
             </div>
         {{ end -}}       
@@ -72,7 +72,7 @@
 <section class="section container-fluid mt-n5 pb-0">
     <div class="row justify-content-center">
       <div class="col-lg-12 text-center">
-        <h2 class="mt-0">Selected Watch - Social Media/OTT Content</h2>
+        <h4 class="mt-0">Selected Watch - Social Media/OTT Content</h4>
       </div>
     </div>
 </section>
@@ -81,7 +81,7 @@
     <div class="row justify-content-center text-center">
         {{ range .Params.watch -}}
             <div class="col-lg-5">
-                <h2 class="h4">{{ .title }}</h2>
+                <h5 class="h5">{{ .title }}</h5>
                 <p>{{ .lead }} <a href="{{ .link }}" target="_blank">watch...</a></p>
             </div>
         {{ end -}}
