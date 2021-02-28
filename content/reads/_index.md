@@ -72,6 +72,29 @@ books: [{
 
 
 {
+    title: "Down Memory Lane",
+    author: "Parthasarathi Rajagopalachari",
+    image: "/reads/images/down_memory_lane.jpg"
+}, 
+{
+    title: "Reality At Dawn",
+    author: "Ram Chandra of Shahjahanpur",
+    image: "/reads/images/reality_at_dawn.jpg"
+}, 
+{
+    title: "My Master",
+    author: "Parthasarathi Rajagopalachari",
+    image: "/reads/images/my_master.jpg"
+}, 
+{
+    title: "சிங்கநெஞ்சம் (Tamil)",
+    author: "Parthasarathi Rajagopalachari",
+    image: "/reads/images/singa_nenjam.jpg"
+}, 
+
+
+
+{
     title: "The Vegetarian",
     author: "Han Kang",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/the_vegetarian.jpg"
@@ -114,7 +137,6 @@ books: [{
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/man_who_knew_infinity.jpg"
 }, 
 
-
 {
     title: "Straight from the Gut",
     author: "John F. Welch",
@@ -137,6 +159,7 @@ books: [{
 }, 
 
 
+
 {
     title: "First, Break All The Rules",
     author: "Marcus Buckingham, Curt Coffman",
@@ -157,6 +180,7 @@ books: [{
     author: "Lee Iacocca",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/reads/images/iacocca.jpg"
 }, 
+
 
 
 {
