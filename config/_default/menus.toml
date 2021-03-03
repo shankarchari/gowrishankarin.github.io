@@ -1,8 +1,8 @@
-[[docs]]
-  name = "Accolades"
-  weight = 10
-  identifier = "prologue"
-  url = "/docs/prologue/"
+#[[docs]]
+#  name = "Accolades"
+#  weight = 10
+#  identifier = "prologue"
+#  url = "/docs/prologue/"
 
 # [[docs]]
 #  name = "Help"
