@@ -7,6 +7,11 @@ lastmod: 2020-10-06T08:47:36+00:00
 draft: false
 images: []
 writes: [{
+    title: "Automatic Differentiation Using Gradient Tapes",
+    lead: "As a Data Scientist or Deep Learning Researcher, one must have a deeper knowledge in various differentiation techniques due to the fact that gradient based optimization techniques like Backpropagation algorithms are critical for model efficiency and convergence.",
+    link: "/blog/automatic-differentiation-using-gradient-tapes/",
+    image: "/blog/automatic-differentiation-using-gradient-tapes/auto_diff.png"
+}, {
     title: "GradCAM, Model Interpretability - VGG16 & Xception Networks",
     lead: "The objective of this post is to understand the importance of Visual Explanations for CNN based large scale Deep Neural Network Models.",
     link: "blog/gradcam-model-interpretability-vgg16-xception-networks/",
