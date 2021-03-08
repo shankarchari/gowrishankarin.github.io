@@ -1,0 +1,1034 @@
+<!doctype html><html lang=en-us><head><meta charset=utf-8><meta http-equiv=x-ua-compatible content="ie=edge"><meta name=viewport content="width=device-width,initial-scale=1,shrink-to-fit=no"><link rel=preload as=font href=https://www.gowrishankar.info/fonts/vendor/jost/jost-v4-latin-regular.woff2 type=font/woff2 crossorigin><link rel=preload as=font href=https://www.gowrishankar.info/fonts/vendor/jost/jost-v4-latin-700.woff2 type=font/woff2 crossorigin><link rel=stylesheet href=https://www.gowrishankar.info/main.d147734b1a03e27a858d98b5ed618e43cbddfa069368fcab10b5eb84f4220a2d87d55ce659b0c3e52a1844f34a927719de9da8fffbd2edd87f73c7f3d8296f3d.css integrity="sha512-0UdzSxoD4nqFjZi17WGOQ8vd+gaTaPyrELXrhPQiCi2H1VzmWbDD5SoYRPNKkncZ3p2o//vS7dh/c8fz2ClvPQ==" crossorigin=anonymous><noscript><style>img.lazyload{display:none}</style></noscript><meta name=robots content="index, follow"><meta name=googlebot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><meta name=bingbot content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1"><title>ResNet50 vs InceptionV3 vs Xception vs NASNet - Introduction to Transfer Learning - Gowri Shankar</title><meta name=description content="Transfer learning is an ML methodology that enables to reuse a model developed for one task to another task. The applications are predominantly in Deep Learning for computer vision and natural language processing."><link rel=canonical href=https://www.gowrishankar.info/blog/resnet50-vs-inceptionv3-vs-xception-vs-nasnet-introduction-to-transfer-learning/><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://www.gowrishankar.info/profile.png"><meta name=twitter:title content="ResNet50 vs InceptionV3 vs Xception vs NASNet - Introduction to Transfer Learning"><meta name=twitter:description content="Transfer learning is an ML methodology that enables to reuse a model developed for one task to another task. The applications are predominantly in Deep Learning for computer vision and natural language processing."><meta name=twitter:site content="@gowrishankarin"><meta name=twitter:creator content="@gowrishankarin"><meta property="og:title" content="ResNet50 vs InceptionV3 vs Xception vs NASNet - Introduction to Transfer Learning"><meta property="og:description" content="Transfer learning is an ML methodology that enables to reuse a model developed for one task to another task. The applications are predominantly in Deep Learning for computer vision and natural language processing."><meta property="og:type" content="article"><meta property="og:url" content="https://www.gowrishankar.info/blog/resnet50-vs-inceptionv3-vs-xception-vs-nasnet-introduction-to-transfer-learning/"><meta property="og:image" content="https://www.gowrishankar.info/profile.png"><meta property="article:published_time" content="2019-06-28T09:19:42+01:00"><meta property="article:modified_time" content="2021-02-28T09:19:42+01:00"><meta property="og:site_name" content="Gowri Shankar"><meta property="article:publisher" content="https://www.facebook.com/verlinde.henk"><meta property="article:author" content="https://www.facebook.com/verlinde.henk"><meta property="og:locale" content="en_US"><script type=application/ld+json>{"@context":"https://schema.org","@type":"Article","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/www.gowrishankar.info\/blog\/resnet50-vs-inceptionv3-vs-xception-vs-nasnet-introduction-to-transfer-learning\/"},"headline":"ResNet50 vs InceptionV3 vs Xception vs NASNet - Introduction to Transfer Learning","image":[],"datePublished":"2019-06-28T09:19:42CET","dateModified":"2021-02-28T09:19:42CET","author":{"@type":"Organization","name":"Gowri Shankar"},"publisher":{"@type":"Organization","name":"Gowri Shankar","logo":{"@type":"ImageObject","url":"https:\/\/www.gowrishankar.info\/logo-doks.png"}},"description":"Transfer learning is an ML methodology that enables to reuse a model developed for one task to another task. The applications are predominantly in Deep Learning for computer vision and natural language processing."}</script><script type=application/ld+json>{"@context":"http://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https:\/\/www.gowrishankar.info\/"},{"@type":"ListItem","position":2,"name":"Blog","item":"https:\/\/www.gowrishankar.info\/blog\/"},{"@type":"ListItem","position":3,"name":"Resnet50 vs Inceptionv3 vs Xception vs Nasnet Introduction to Transfer Learning","item":"https:\/\/www.gowrishankar.info\/blog\/resnet50-vs-inceptionv3-vs-xception-vs-nasnet-introduction-to-transfer-learning\/"}]}</script><meta name=theme-color content="#fff"><link rel=apple-touch-icon sizes=180x180 href=https://www.gowrishankar.info/apple-touch-icon.png><link rel=icon type=image/png sizes=32x32 href=https://www.gowrishankar.info/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=https://www.gowrishankar.info/favicon-16x16.png><link rel=manifest href=https://www.gowrishankar.info/site.webmanifest><script type=text/javascript async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML"></script><script type=text/x-mathjax-config>
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+        processEscapes: true
+      }
+    });
+</script></head><body class="blog single"><div class="header-bar fixed-top"></div><header class="navbar fixed-top navbar-expand-md navbar-light"><div class=container><input class="menu-btn order-0" type=checkbox id=menu-btn>
+<label class="menu-icon d-md-none" for=menu-btn><span class=navicon></span></label><a class="navbar-brand order-1 order-md-0 mr-auto" href=https://www.gowrishankar.info/>Gowri Shankar</a>
+<button id=mode class="btn btn-link order-2 order-md-4" type=button aria-label="Toggle mode">
+<span class=toggle-dark><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-moon"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg></span><span class=toggle-light><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-sun"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></span></button><ul class="navbar-nav social-nav order-3 order-md-5"><li class=nav-item><a class=nav-link href=https://github.com/gowrishankarin><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentcolor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-github"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37.0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44.0 0020 4.77 5.07 5.07.0 0019.91 1S18.73.65 16 2.48a13.38 13.38.0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07.0 005 4.77a5.44 5.44.0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37.0 009 18.13V22"/></svg><span class="ml-2 sr-only">GitHub</span></a></li></ul><div class="collapse navbar-collapse order-4 order-md-1"><ul class="navbar-nav main-nav mr-auto order-5 order-md-2"><li class=nav-item><a class=nav-link href=https://www.gowrishankar.info/docs/prologue/education/>Accolades</a></li><li class="nav-item active"><a class=nav-link href=https://www.gowrishankar.info/blog/>Blog</a></li><li class=nav-item><a class=nav-link href=https://www.gowrishankar.info/reads/>Bookshelf</a></li><li class=nav-item><a class=nav-link href=https://www.gowrishankar.info/contributors/gowri-shankar>Contact</a></li></ul><div class="break order-6 d-md-none"></div><form class="navbar-form flex-grow-1 order-7 order-md-3"><input id=userinput class="form-control is-search" type=search placeholder="Search docs..." aria-label="Search docs..." autocomplete=off><div id=suggestions class="shadow bg-white rounded"></div></form></div></div></header><div class="wrap container" role=document><div class=content><div class="row justify-content-left"><div class=col-12><article><div class=blog-header><h1>ResNet50 vs InceptionV3 vs Xception vs NASNet - Introduction to Transfer Learning</h1><p><small>Posted June 28, 2019 by <a class="stretched-link position-relative" href=https://www.gowrishankar.info/contributors/gowri-shankar/>Gowri Shankar</a>&nbsp;&dash;&nbsp;<strong>23&nbsp;min read</strong></small><p></div><p class=lead>Transfer learning is an ML methodology that enables to reuse a model developed for one task to another task. The applications are predominantly in Deep Learning for computer vision and natural language processing.</p><p>Objective:</p><p>Objective of this kernel is to introduce transfer learning to beginners. I have taken the following deep neural network applications</p><ul><li>ResNet50</li><li>InceptionV3</li><li>Xception</li><li>NASNet</li></ul><p><strong>Accuracy versus Computational Demand (Left) and Number of Parameters (Right)</strong>
+<img src=https://miro.medium.com/max/1000/1*jQZ_oJ3VZbVWiBWuc5SMMg.png alt="Accuracy versus Computational Demand (Left) and Number of Parameters (Right)"></p><h3 id=transfer-learning>Transfer Learning</h3><p>Transfer learning is an ML methodology that enables to reuse a model developed for one task to another task.
+The applications are predominantly in Deep Learning for computer vision and natural language processing.
+This kernel introduces one on how to use Keras transfer learning applications.</p><h2 id=resnet50-aptos-accuracy-0396>ResNet50 (APTOS Accuracy: 0.396)</h2><p>Created By: Kaiming He, Xiangyu Zhang, Shaoqing Ren, Jian Sun<br>Literature: <a href=https://arxiv.org/abs/1512.03385>Deep Residual Learning for Image Recognition</a><br>Topological Depth: <strong>152 Layers</strong><br>ImageNet Validation Accuracy: <strong>Top-1 Accuracy</strong>: 0.749 <strong>Top-5 Accuracy</strong>: 0.921</p><h2 id=inceptionv3-aptos-accuracy-0559>InceptionV3 (APTOS Accuracy: 0.559)</h2><p>Created By: Christian Szegedy, Vincent Vanhoucke, Sergey Ioffe, Jonathon Shlens, Zbigniew Wojna<br>Literature: <a href=https://arxiv.org/abs/1512.00567>Rethinking the Inception Architecture for Computer Vision</a><br>Topological Depth: <strong>159 Layers</strong><br>ImageNet Validation Accuracy: <strong>Top-1 Accuracy</strong>: 0.779 <strong>Top-5 Accuracy</strong>: 0.937</p><h2 id=xception-aptos-accuracy-0509>Xception (APTOS Accuracy: 0.509)</h2><p>Created By: François Chollet<br>Literature: <a href=https://arxiv.org/abs/1610.02357>Xception: Deep Learning with Depthwise Separable Convolutions</a><br>Topological Depth: <strong>126 Layers</strong><br>ImageNet Validation Accuracy: <strong>Top-1 Accuracy</strong>: 0.790 <strong>Top-5 Accuracy</strong>: 0.945</p><h2 id=nasnet-aptos-accuracy-tbd>NASNet (APTOS Accuracy: TBD)</h2><p>Created By: Barret Zoph, Vijay Vasudevan, Jonathon Shlens, Quoc V. Le<br>Literature: <a href=https://arxiv.org/abs/1707.07012>Learning Transferable Architectures for Scalable Image Recognition</a><br>Topological Depth: <strong>~1040</strong><br>ImageNet Validation Accuracy: <strong>Top-1 Accuracy</strong>: 0.825 <strong>Top-5 Accuracy</strong>: 0.960</p><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>os</span>
+<span class=k>print</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>(</span><span class=s2>&#34;../input&#34;</span><span class=p>))</span>
+
+</code></pre></div><pre><code>['aptos2019-blindness-detection', 'keras-pretrained-models', 'nasnetlarge']
+</code></pre><h2 id=preprocess>Preprocess</h2><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=c1># This Python 3 environment comes with many helpful analytics libraries installed</span>
+<span class=c1># It is defined by the kaggle/python docker image: https://github.com/kaggle/docker-python</span>
+<span class=c1># For example, here&#39;s several helpful packages to load in </span>
+
+<span class=kn>import</span> <span class=nn>numpy</span> <span class=kn>as</span> <span class=nn>np</span> <span class=c1># linear algebra</span>
+<span class=kn>import</span> <span class=nn>pandas</span> <span class=kn>as</span> <span class=nn>pd</span> <span class=c1># data processing, CSV file I/O (e.g. pd.read_csv)</span>
+
+<span class=c1># Input data files are available in the &#34;../input/&#34; directory.</span>
+<span class=c1># For example, running this (by clicking run or pressing Shift+Enter) will list the files in the input directory</span>
+
+<span class=n>train_df</span> <span class=o>=</span> <span class=n>pd</span><span class=o>.</span><span class=n>read_csv</span><span class=p>(</span><span class=s2>&#34;../input/aptos2019-blindness-detection/train.csv&#34;</span><span class=p>)</span>
+<span class=k>print</span><span class=p>(</span><span class=s2>&#34;Shape of train data: {0}&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>train_df</span><span class=o>.</span><span class=n>shape</span><span class=p>))</span>
+<span class=n>test_df</span> <span class=o>=</span> <span class=n>pd</span><span class=o>.</span><span class=n>read_csv</span><span class=p>(</span><span class=s2>&#34;../input/aptos2019-blindness-detection/test.csv&#34;</span><span class=p>)</span>
+<span class=k>print</span><span class=p>(</span><span class=s2>&#34;Shape of test data: {0}&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>test_df</span><span class=o>.</span><span class=n>shape</span><span class=p>))</span>
+
+<span class=n>diagnosis_df</span> <span class=o>=</span> <span class=n>pd</span><span class=o>.</span><span class=n>DataFrame</span><span class=p>({</span>
+    <span class=s1>&#39;diagnosis&#39;</span><span class=p>:</span> <span class=p>[</span><span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>],</span>
+    <span class=s1>&#39;diagnosis_label&#39;</span><span class=p>:</span> <span class=p>[</span><span class=s1>&#39;No DR&#39;</span><span class=p>,</span> <span class=s1>&#39;Mild&#39;</span><span class=p>,</span> <span class=s1>&#39;Moderate&#39;</span><span class=p>,</span> <span class=s1>&#39;Severe&#39;</span><span class=p>,</span> <span class=s1>&#39;Proliferative DR&#39;</span><span class=p>]</span>
+<span class=p>})</span>
+
+<span class=n>train_df</span> <span class=o>=</span> <span class=n>train_df</span><span class=o>.</span><span class=n>merge</span><span class=p>(</span><span class=n>diagnosis_df</span><span class=p>,</span> <span class=n>how</span><span class=o>=</span><span class=s2>&#34;left&#34;</span><span class=p>,</span> <span class=n>on</span><span class=o>=</span><span class=s2>&#34;diagnosis&#34;</span><span class=p>)</span>
+
+<span class=n>train_image_files</span> <span class=o>=</span> <span class=p>[</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>dp</span><span class=p>,</span> <span class=n>f</span><span class=p>)</span> <span class=k>for</span> <span class=n>dp</span><span class=p>,</span> <span class=n>dn</span><span class=p>,</span> <span class=n>fn</span> <span class=ow>in</span> <span class=n>os</span><span class=o>.</span><span class=n>walk</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>expanduser</span><span class=p>(</span><span class=s2>&#34;../input/aptos2019-blindness-detection/train_images&#34;</span><span class=p>))</span> <span class=k>for</span> <span class=n>f</span> <span class=ow>in</span> <span class=n>fn</span><span class=p>]</span>
+<span class=n>train_images_df</span> <span class=o>=</span> <span class=n>pd</span><span class=o>.</span><span class=n>DataFrame</span><span class=p>({</span>
+    <span class=s1>&#39;files&#39;</span><span class=p>:</span> <span class=n>train_image_files</span><span class=p>,</span>
+    <span class=s1>&#39;id_code&#39;</span><span class=p>:</span> <span class=p>[</span><span class=nb>file</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>)[</span><span class=mi>4</span><span class=p>]</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;.&#39;</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span> <span class=k>for</span> <span class=nb>file</span> <span class=ow>in</span> <span class=n>train_image_files</span><span class=p>],</span>
+<span class=p>})</span>
+<span class=n>train_df</span> <span class=o>=</span> <span class=n>train_df</span><span class=o>.</span><span class=n>merge</span><span class=p>(</span><span class=n>train_images_df</span><span class=p>,</span> <span class=n>how</span><span class=o>=</span><span class=s2>&#34;left&#34;</span><span class=p>,</span> <span class=n>on</span><span class=o>=</span><span class=s2>&#34;id_code&#34;</span><span class=p>)</span>
+<span class=k>del</span> <span class=n>train_images_df</span>
+<span class=k>print</span><span class=p>(</span><span class=s2>&#34;Shape of train data: {0}&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>train_df</span><span class=o>.</span><span class=n>shape</span><span class=p>))</span>
+
+<span class=n>test_image_files</span> <span class=o>=</span> <span class=p>[</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>join</span><span class=p>(</span><span class=n>dp</span><span class=p>,</span> <span class=n>f</span><span class=p>)</span> <span class=k>for</span> <span class=n>dp</span><span class=p>,</span> <span class=n>dn</span><span class=p>,</span> <span class=n>fn</span> <span class=ow>in</span> <span class=n>os</span><span class=o>.</span><span class=n>walk</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>path</span><span class=o>.</span><span class=n>expanduser</span><span class=p>(</span><span class=s2>&#34;../input/aptos2019-blindness-detection/test_images&#34;</span><span class=p>))</span> <span class=k>for</span> <span class=n>f</span> <span class=ow>in</span> <span class=n>fn</span><span class=p>]</span>
+<span class=n>test_images_df</span> <span class=o>=</span> <span class=n>pd</span><span class=o>.</span><span class=n>DataFrame</span><span class=p>({</span>
+    <span class=s1>&#39;files&#39;</span><span class=p>:</span> <span class=n>test_image_files</span><span class=p>,</span>
+    <span class=s1>&#39;id_code&#39;</span><span class=p>:</span> <span class=p>[</span><span class=nb>file</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;/&#39;</span><span class=p>)[</span><span class=mi>4</span><span class=p>]</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s1>&#39;.&#39;</span><span class=p>)[</span><span class=mi>0</span><span class=p>]</span> <span class=k>for</span> <span class=nb>file</span> <span class=ow>in</span> <span class=n>test_image_files</span><span class=p>],</span>
+<span class=p>})</span>
+
+
+<span class=n>test_df</span> <span class=o>=</span> <span class=n>test_df</span><span class=o>.</span><span class=n>merge</span><span class=p>(</span><span class=n>test_images_df</span><span class=p>,</span> <span class=n>how</span><span class=o>=</span><span class=s2>&#34;left&#34;</span><span class=p>,</span> <span class=n>on</span><span class=o>=</span><span class=s2>&#34;id_code&#34;</span><span class=p>)</span>
+<span class=k>del</span> <span class=n>test_images_df</span>
+<span class=k>print</span><span class=p>(</span><span class=s2>&#34;Shape of test data: {0}&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>test_df</span><span class=o>.</span><span class=n>shape</span><span class=p>))</span>
+
+<span class=c1># Any results you write to the current directory are saved as output.</span>
+</code></pre></div><pre><code>Shape of train data: (3662, 2)
+Shape of test data: (1928, 1)
+Shape of train data: (3662, 4)
+Shape of test data: (1928, 2)
+</code></pre><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>train_df</span><span class=o>.</span><span class=n>head</span><span class=p>()</span>
+</code></pre></div><div><style scoped>.dataframe tbody tr th:only-of-type{vertical-align:middle}<pre><code>.dataframe tbody tr th{vertical-align:top}.dataframe thead th{text-align:right}</code></pre><p></style></p><table border=1 class=dataframe><thead><tr style=text-align:right><th></th><th>id_code</th><th>diagnosis</th><th>diagnosis_label</th><th>files</th></tr></thead><tbody><tr><th>0</th><td>000c1434d8d7</td><td>2</td><td>Moderate</td><td>../input/aptos2019-blindness-detection/train_i...</td></tr><tr><th>1</th><td>001639a390f0</td><td>4</td><td>Proliferative DR</td><td>../input/aptos2019-blindness-detection/train_i...</td></tr><tr><th>2</th><td>0024cdab0c1e</td><td>1</td><td>Mild</td><td>../input/aptos2019-blindness-detection/train_i...</td></tr><tr><th>3</th><td>002c21358ce6</td><td>0</td><td>No DR</td><td>../input/aptos2019-blindness-detection/train_i...</td></tr><tr><th>4</th><td>005b95c28852</td><td>0</td><td>No DR</td><td>../input/aptos2019-blindness-detection/train_i...</td></tr></tbody></table></div><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>test_df</span><span class=o>.</span><span class=n>head</span><span class=p>()</span>
+</code></pre></div><div><style scoped>.dataframe tbody tr th:only-of-type{vertical-align:middle}<pre><code>.dataframe tbody tr th{vertical-align:top}.dataframe thead th{text-align:right}</code></pre><p></style></p><table border=1 class=dataframe><thead><tr style=text-align:right><th></th><th>id_code</th><th>files</th></tr></thead><tbody><tr><th>0</th><td>0005cfc8afb6</td><td>../input/aptos2019-blindness-detection/test_im...</td></tr><tr><th>1</th><td>003f0afdcd15</td><td>../input/aptos2019-blindness-detection/test_im...</td></tr><tr><th>2</th><td>006efc72b638</td><td>../input/aptos2019-blindness-detection/test_im...</td></tr><tr><th>3</th><td>00836aaacf06</td><td>../input/aptos2019-blindness-detection/test_im...</td></tr><tr><th>4</th><td>009245722fa4</td><td>../input/aptos2019-blindness-detection/test_im...</td></tr></tbody></table></div><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>IMG_SIZE</span> <span class=o>=</span> <span class=mi>150</span>
+<span class=n>N_CLASSES</span> <span class=o>=</span> <span class=n>train_df</span><span class=o>.</span><span class=n>diagnosis</span><span class=o>.</span><span class=n>nunique</span><span class=p>()</span>
+<span class=n>CLASSES</span> <span class=o>=</span> <span class=nb>list</span><span class=p>(</span><span class=nb>map</span><span class=p>(</span><span class=nb>str</span><span class=p>,</span> <span class=nb>range</span><span class=p>(</span><span class=n>N_CLASSES</span><span class=p>)))</span>
+<span class=n>BATCH_SIZE</span> <span class=o>=</span> <span class=mi>32</span>
+<span class=n>EPOCH_STEPS</span> <span class=o>=</span> <span class=mi>10</span>
+<span class=n>EPOCHS</span> <span class=o>=</span> <span class=mi>25</span>
+<span class=n>NB_FILTERS</span> <span class=o>=</span> <span class=mi>32</span>
+<span class=n>KERNEL_SIZE</span> <span class=o>=</span> <span class=mi>4</span>
+<span class=n>CHANNELS</span> <span class=o>=</span> <span class=mi>3</span>
+</code></pre></div><h2 id=data-generator-train-validation-and-test-datasets>Data Generator: Train, Validation and Test Datasets</h2><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=kn>import</span> <span class=nn>tensorflow</span> <span class=kn>as</span> <span class=nn>tf</span>
+<span class=k>print</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>__version__</span><span class=p>)</span>
+
+<span class=kn>from</span> <span class=nn>keras.preprocessing.image</span> <span class=kn>import</span> <span class=n>ImageDataGenerator</span>
+
+<span class=n>train_df</span><span class=p>[</span><span class=s2>&#34;diagnosis&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=n>train_df</span><span class=p>[</span><span class=s2>&#34;diagnosis&#34;</span><span class=p>]</span><span class=o>.</span><span class=n>astype</span><span class=p>(</span><span class=nb>str</span><span class=p>)</span>
+
+<span class=n>train_data_gen</span> <span class=o>=</span> <span class=n>ImageDataGenerator</span><span class=p>(</span>
+    <span class=c1># featurewise_center = True, # Set input mean to 0 over the dataset</span>
+    <span class=n>samplewise_center</span> <span class=o>=</span> <span class=bp>True</span><span class=p>,</span> <span class=c1># set each sample mean to 0</span>
+    <span class=n>featurewise_std_normalization</span> <span class=o>=</span> <span class=bp>True</span><span class=p>,</span> <span class=c1># Divide inputs by std of the dataset</span>
+    <span class=n>samplewise_std_normalization</span> <span class=o>=</span> <span class=bp>True</span><span class=p>,</span> <span class=c1># Divide each input by its std</span>
+    <span class=c1># zca_whitening = True, # Apply ZCA whitening</span>
+    <span class=n>zca_epsilon</span> <span class=o>=</span> <span class=mf>1e-06</span><span class=p>,</span> <span class=c1># Epsilon for ZCA whitening,</span>
+    <span class=n>rotation_range</span> <span class=o>=</span> <span class=mi>30</span><span class=p>,</span> <span class=c1># randomly rotate imges in the range (degrees, 0 to 189)</span>
+    <span class=n>width_shift_range</span> <span class=o>=</span> <span class=mf>0.1</span><span class=p>,</span> <span class=c1># randomly shift images horizontally (fraction of total width)</span>
+    <span class=n>height_shift_range</span> <span class=o>=</span> <span class=mf>0.1</span><span class=p>,</span> <span class=c1># Randomly shift images vertically (fraction of total height)</span>
+    <span class=n>shear_range</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span> <span class=c1># set range for random shear</span>
+    <span class=n>zoom_range</span> <span class=o>=</span> <span class=p>[</span><span class=mf>0.75</span><span class=p>,</span> <span class=mf>1.25</span><span class=p>],</span> <span class=c1># set range for random zoom</span>
+    <span class=n>channel_shift_range</span> <span class=o>=</span> <span class=mf>0.05</span><span class=p>,</span> <span class=c1># set range for random channel shifts</span>
+    <span class=n>fill_mode</span> <span class=o>=</span> <span class=s1>&#39;constant&#39;</span><span class=p>,</span> <span class=c1># set mode for filling points outside the input boundaries</span>
+    <span class=n>cval</span> <span class=o>=</span> <span class=mi>0</span><span class=p>,</span> <span class=c1># value used for fill_mode</span>
+    <span class=n>horizontal_flip</span> <span class=o>=</span> <span class=bp>True</span><span class=p>,</span>
+    <span class=n>vertical_flip</span> <span class=o>=</span> <span class=bp>True</span><span class=p>,</span>
+    <span class=n>rescale</span> <span class=o>=</span> <span class=mi>1</span><span class=o>/</span><span class=mf>255.</span><span class=p>,</span>
+    <span class=n>preprocessing_function</span> <span class=o>=</span> <span class=bp>None</span><span class=p>,</span>
+    <span class=n>validation_split</span><span class=o>=</span><span class=mf>0.1</span>
+<span class=p>)</span>
+<span class=n>train_data</span> <span class=o>=</span> <span class=n>train_data_gen</span><span class=o>.</span><span class=n>flow_from_dataframe</span><span class=p>(</span>
+    <span class=n>dataframe</span><span class=o>=</span><span class=n>train_df</span><span class=p>,</span> 
+    <span class=n>x_col</span><span class=o>=</span><span class=s2>&#34;files&#34;</span><span class=p>,</span>
+    <span class=n>y_col</span><span class=o>=</span><span class=s2>&#34;diagnosis&#34;</span><span class=p>,</span>
+    <span class=n>batch_size</span><span class=o>=</span><span class=n>BATCH_SIZE</span><span class=p>,</span>
+    <span class=n>shuffle</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span>
+    <span class=n>classes</span><span class=o>=</span><span class=n>CLASSES</span><span class=p>,</span>
+    <span class=n>class_mode</span><span class=o>=</span><span class=s2>&#34;categorical&#34;</span><span class=p>,</span>
+    <span class=n>target_size</span><span class=o>=</span><span class=p>(</span><span class=n>IMG_SIZE</span><span class=p>,</span> <span class=n>IMG_SIZE</span><span class=p>),</span>
+    <span class=n>subset</span><span class=o>=</span><span class=s2>&#34;training&#34;</span>
+<span class=p>)</span>
+
+<span class=n>validation_data</span> <span class=o>=</span> <span class=n>train_data_gen</span><span class=o>.</span><span class=n>flow_from_dataframe</span><span class=p>(</span>
+    <span class=n>dataframe</span><span class=o>=</span><span class=n>train_df</span><span class=p>,</span> 
+    <span class=n>x_col</span><span class=o>=</span><span class=s2>&#34;files&#34;</span><span class=p>,</span>
+    <span class=n>y_col</span><span class=o>=</span><span class=s2>&#34;diagnosis&#34;</span><span class=p>,</span>
+    <span class=n>batch_size</span><span class=o>=</span><span class=n>BATCH_SIZE</span><span class=p>,</span>
+    <span class=n>shuffle</span><span class=o>=</span><span class=bp>True</span><span class=p>,</span>
+    <span class=n>classes</span><span class=o>=</span><span class=n>CLASSES</span><span class=p>,</span>
+    <span class=n>class_mode</span><span class=o>=</span><span class=s2>&#34;categorical&#34;</span><span class=p>,</span>
+    <span class=n>target_size</span><span class=o>=</span><span class=p>(</span><span class=n>IMG_SIZE</span><span class=p>,</span> <span class=n>IMG_SIZE</span><span class=p>),</span>
+    <span class=n>subset</span><span class=o>=</span><span class=s2>&#34;validation&#34;</span>
+<span class=p>)</span>
+
+<span class=n>test_data_gen</span> <span class=o>=</span> <span class=n>ImageDataGenerator</span><span class=p>(</span><span class=n>rescale</span><span class=o>=</span><span class=mf>1.</span><span class=o>/</span><span class=mi>255</span><span class=p>)</span>
+<span class=n>test_data</span> <span class=o>=</span> <span class=n>test_data_gen</span><span class=o>.</span><span class=n>flow_from_dataframe</span><span class=p>(</span>
+    <span class=n>dataframe</span><span class=o>=</span><span class=n>test_df</span><span class=p>,</span>
+    <span class=n>x_col</span><span class=o>=</span><span class=s2>&#34;files&#34;</span><span class=p>,</span>
+    <span class=n>target_size</span><span class=o>=</span><span class=p>(</span><span class=n>IMG_SIZE</span><span class=p>,</span> <span class=n>IMG_SIZE</span><span class=p>),</span>
+    <span class=n>batch_size</span> <span class=o>=</span> <span class=mi>1</span><span class=p>,</span>
+    <span class=n>shuffle</span><span class=o>=</span><span class=bp>False</span><span class=p>,</span>
+    <span class=n>class_mode</span><span class=o>=</span><span class=bp>None</span>
+<span class=p>)</span>
+</code></pre></div><h2 id=transfer-learning-assets>Transfer Learning Assets</h2><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>tensorflow.python.keras.applications</span> <span class=kn>import</span> <span class=n>ResNet50</span><span class=p>,</span> <span class=n>InceptionV3</span><span class=p>,</span> <span class=n>Xception</span><span class=p>,</span> <span class=n>NASNetLarge</span>
+<span class=k>print</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>((</span><span class=s2>&#34;../input/keras-pretrained-models/&#34;</span><span class=p>)))</span>
+<span class=k>print</span><span class=p>(</span><span class=n>os</span><span class=o>.</span><span class=n>listdir</span><span class=p>((</span><span class=s2>&#34;../input/nasnetlarge/&#34;</span><span class=p>)))</span>
+
+<span class=n>model_resnet50</span> <span class=o>=</span> <span class=n>ResNet50</span><span class=p>(</span>
+    <span class=n>weights</span><span class=o>=</span><span class=s2>&#34;../input/keras-pretrained-models/resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5&#34;</span><span class=p>,</span> 
+    <span class=n>include_top</span><span class=o>=</span><span class=bp>False</span><span class=p>,</span> 
+    <span class=n>input_tensor</span><span class=o>=</span><span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Input</span><span class=p>(</span><span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=n>IMG_SIZE</span><span class=p>,</span> <span class=n>IMG_SIZE</span><span class=p>,</span> <span class=mi>3</span><span class=p>))</span>
+<span class=p>)</span>
+
+
+<span class=n>model_inception_v3</span> <span class=o>=</span> <span class=n>InceptionV3</span><span class=p>(</span>
+    <span class=n>weights</span><span class=o>=</span><span class=s2>&#34;../input/keras-pretrained-models/inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5&#34;</span><span class=p>,</span> 
+    <span class=n>include_top</span><span class=o>=</span><span class=bp>False</span><span class=p>,</span> 
+    <span class=n>input_tensor</span><span class=o>=</span><span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Input</span><span class=p>(</span><span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=n>IMG_SIZE</span><span class=p>,</span> <span class=n>IMG_SIZE</span><span class=p>,</span> <span class=mi>3</span><span class=p>))</span>
+<span class=p>)</span>
+
+<span class=n>model_xception</span> <span class=o>=</span> <span class=n>Xception</span><span class=p>(</span>
+    <span class=n>weights</span><span class=o>=</span><span class=s2>&#34;../input/keras-pretrained-models/xception_weights_tf_dim_ordering_tf_kernels_notop.h5&#34;</span><span class=p>,</span> 
+    <span class=n>include_top</span><span class=o>=</span><span class=bp>False</span><span class=p>,</span> 
+    <span class=n>input_tensor</span><span class=o>=</span><span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Input</span><span class=p>(</span><span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=n>IMG_SIZE</span><span class=p>,</span> <span class=n>IMG_SIZE</span><span class=p>,</span> <span class=mi>3</span><span class=p>))</span>
+<span class=p>)</span>
+
+<span class=n>model_nasnet_large</span> <span class=o>=</span> <span class=n>NASNetLarge</span><span class=p>(</span>
+    <span class=n>weights</span><span class=o>=</span><span class=s2>&#34;../input/nasnetlarge/NASNet-large-no-top.h5&#34;</span><span class=p>,</span> 
+    <span class=n>include_top</span><span class=o>=</span><span class=bp>False</span><span class=p>,</span> 
+    <span class=n>input_tensor</span><span class=o>=</span><span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Input</span><span class=p>(</span><span class=n>shape</span><span class=o>=</span><span class=p>(</span><span class=n>IMG_SIZE</span><span class=p>,</span> <span class=n>IMG_SIZE</span><span class=p>,</span> <span class=mi>3</span><span class=p>))</span>
+<span class=p>)</span>
+
+</code></pre></div><pre><code>['inception_v3_weights_tf_dim_ordering_tf_kernels.h5', 'resnet50_weights_tf_dim_ordering_tf_kernels_notop.h5', 'imagenet_class_index.json', 'xception_weights_tf_dim_ordering_tf_kernels_notop.h5', 'inception_v3_weights_tf_dim_ordering_tf_kernels_notop.h5', 'inception_resnet_v2_weights_tf_dim_ordering_tf_kernels.h5', 'xception_weights_tf_dim_ordering_tf_kernels.h5', 'inception_resnet_v2_weights_tf_dim_ordering_tf_kernels_notop.h5', 'resnet50_weights_tf_dim_ordering_tf_kernels.h5', 'vgg16_weights_tf_dim_ordering_tf_kernels_notop.h5', 'Kuszma.JPG']
+['NASNet-large-no-top.h5']
+
+
+/opt/conda/lib/python3.6/site-packages/keras_applications/resnet50.py:265: UserWarning: The output shape of `ResNet50(include_top=False)` has been changed since Keras 2.2.0.
+  warnings.warn('The output shape of `ResNet50(include_top=False)` '
+</code></pre><div class=highlight><pre class=chroma><code class=language-python data-lang=python>
+
+<span class=k>def</span> <span class=nf>create_model</span><span class=p>():</span>
+    <span class=n>model</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>models</span><span class=o>.</span><span class=n>Sequential</span><span class=p>([</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Conv2D</span><span class=p>(</span><span class=n>NB_FILTERS</span><span class=p>,</span> <span class=p>(</span><span class=n>KERNEL_SIZE</span><span class=p>,</span> <span class=n>KERNEL_SIZE</span><span class=p>),</span> <span class=n>padding</span><span class=o>=</span><span class=s2>&#34;valid&#34;</span><span class=p>,</span> <span class=n>strides</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span> <span class=n>input_shape</span><span class=o>=</span><span class=p>(</span><span class=n>IMG_SIZE</span><span class=p>,</span> <span class=n>IMG_SIZE</span><span class=p>,</span> <span class=n>CHANNELS</span><span class=p>),</span> <span class=n>activation</span><span class=o>=</span><span class=s2>&#34;relu&#34;</span><span class=p>),</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Conv2D</span><span class=p>(</span><span class=n>NB_FILTERS</span><span class=p>,</span> <span class=p>(</span><span class=n>KERNEL_SIZE</span><span class=p>,</span> <span class=n>KERNEL_SIZE</span><span class=p>),</span> <span class=n>activation</span><span class=o>=</span><span class=s2>&#34;relu&#34;</span><span class=p>),</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Conv2D</span><span class=p>(</span><span class=n>NB_FILTERS</span><span class=p>,</span> <span class=p>(</span><span class=n>KERNEL_SIZE</span><span class=p>,</span> <span class=n>KERNEL_SIZE</span><span class=p>),</span> <span class=n>activation</span><span class=o>=</span><span class=s2>&#34;relu&#34;</span><span class=p>),</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>MaxPooling2D</span><span class=p>(</span><span class=n>pool_size</span><span class=o>=</span><span class=p>(</span><span class=mi>8</span><span class=p>,</span> <span class=mi>8</span><span class=p>)),</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Flatten</span><span class=p>(),</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dense</span><span class=p>(</span><span class=mi>2048</span><span class=p>,</span> <span class=n>activation</span><span class=o>=</span><span class=s2>&#34;relu&#34;</span><span class=p>),</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dropout</span><span class=p>(</span><span class=mf>0.25</span><span class=p>),</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dense</span><span class=p>(</span><span class=mi>2048</span><span class=p>,</span> <span class=n>activation</span><span class=o>=</span><span class=s2>&#34;relu&#34;</span><span class=p>),</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dropout</span><span class=p>(</span><span class=mf>0.25</span><span class=p>),</span>
+        <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dense</span><span class=p>(</span><span class=n>N_CLASSES</span><span class=p>,</span> <span class=n>activation</span><span class=o>=</span><span class=s2>&#34;softmax&#34;</span><span class=p>)</span>
+        
+    <span class=p>])</span>
+    <span class=k>return</span> <span class=n>model</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=c1># Resnet50: 0.396</span>
+<span class=c1># create_model: 0.152</span>
+<span class=c1># InceptionV3: 0.559</span>
+<span class=c1># Xception: 0.509</span>
+
+<span class=k>def</span> <span class=nf>get_model</span><span class=p>(</span><span class=n>model</span><span class=p>):</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>model</span><span class=o>.</span><span class=n>output</span>
+
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>GlobalAveragePooling2D</span><span class=p>()(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dense</span><span class=p>(</span><span class=mi>2048</span><span class=p>,</span> <span class=n>activation</span><span class=o>=</span><span class=s1>&#39;relu&#39;</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dropout</span><span class=p>(</span><span class=mf>0.25</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dense</span><span class=p>(</span><span class=mi>1024</span><span class=p>,</span> <span class=n>activation</span><span class=o>=</span><span class=s1>&#39;relu&#39;</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dropout</span><span class=p>(</span><span class=mf>0.25</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dense</span><span class=p>(</span><span class=mi>512</span><span class=p>,</span> <span class=n>activation</span><span class=o>=</span><span class=s1>&#39;relu&#39;</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dropout</span><span class=p>(</span><span class=mf>0.25</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dense</span><span class=p>(</span><span class=mi>256</span><span class=p>,</span> <span class=n>activation</span><span class=o>=</span><span class=s1>&#39;relu&#39;</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dropout</span><span class=p>(</span><span class=mf>0.25</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>X</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dense</span><span class=p>(</span><span class=mi>128</span><span class=p>,</span> <span class=n>activation</span><span class=o>=</span><span class=s1>&#39;relu&#39;</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>predictions</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>layers</span><span class=o>.</span><span class=n>Dense</span><span class=p>(</span><span class=n>N_CLASSES</span><span class=p>,</span> <span class=n>activation</span><span class=o>=</span><span class=s1>&#39;softmax&#39;</span><span class=p>)(</span><span class=n>X</span><span class=p>)</span>
+    <span class=n>model</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>Model</span><span class=p>(</span><span class=n>inputs</span><span class=o>=</span><span class=n>model</span><span class=o>.</span><span class=n>input</span><span class=p>,</span> <span class=n>outputs</span><span class=o>=</span><span class=n>predictions</span><span class=p>)</span>
+    
+<span class=c1>#     for layer in model.layers:</span>
+<span class=c1>#         layer.trainable = True</span>
+        
+<span class=c1>#     for layer in model.layers[15:]:</span>
+<span class=c1>#         layer.trainable = False</span>
+    
+    <span class=k>return</span> <span class=n>model</span>
+
+
+</code></pre></div><h2 id=optimize-compile-train-and-predict>Optimize, Compile, Train and Predict</h2><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>optimizer</span><span class=o>=</span><span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>optimizers</span><span class=o>.</span><span class=n>Nadam</span><span class=p>(</span><span class=n>lr</span><span class=o>=</span><span class=mi>2</span><span class=o>*</span><span class=mf>1e-3</span><span class=p>,</span> <span class=n>schedule_decay</span><span class=o>=</span><span class=mf>1e-5</span><span class=p>)</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>algo</span> <span class=o>=</span> <span class=s2>&#34;inception_v3&#34;</span>
+<span class=n>klass</span> <span class=o>=</span> <span class=s2>&#34;basics&#34;</span>
+
+<span class=n>model</span> <span class=o>=</span> <span class=n>get_model</span><span class=p>(</span><span class=n>model_inception_v3</span><span class=p>)</span>
+
+<span class=n>opt</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>optimizers</span><span class=o>.</span><span class=n>Adam</span><span class=p>(</span><span class=n>lr</span><span class=o>=</span><span class=mf>0.001</span><span class=p>,</span> <span class=n>epsilon</span><span class=o>=</span><span class=mf>1e-6</span><span class=p>)</span>
+<span class=n>model</span><span class=o>.</span><span class=n>compile</span><span class=p>(</span><span class=n>optimizer</span><span class=o>=</span><span class=n>optimizer</span><span class=p>,</span> <span class=n>loss</span><span class=o>=</span><span class=s1>&#39;categorical_crossentropy&#39;</span><span class=p>,</span> <span class=n>metrics</span><span class=o>=</span><span class=p>[</span><span class=s1>&#39;accuracy&#39;</span><span class=p>])</span>
+<span class=n>model</span><span class=o>.</span><span class=n>summary</span><span class=p>()</span>
+
+
+</code></pre></div><pre><code>Model: &quot;model&quot;
+__________________________________________________________________________________________________
+Layer (type)                    Output Shape         Param #     Connected to                     
+==================================================================================================
+input_2 (InputLayer)            [(None, 150, 150, 3) 0                                            
+__________________________________________________________________________________________________
+conv2d (Conv2D)                 (None, 74, 74, 32)   864         input_2[0][0]                    
+__________________________________________________________________________________________________
+batch_normalization (BatchNorma (None, 74, 74, 32)   96          conv2d[0][0]                     
+__________________________________________________________________________________________________
+activation_49 (Activation)      (None, 74, 74, 32)   0           batch_normalization[0][0]        
+__________________________________________________________________________________________________
+conv2d_1 (Conv2D)               (None, 72, 72, 32)   9216        activation_49[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_1 (BatchNor (None, 72, 72, 32)   96          conv2d_1[0][0]                   
+__________________________________________________________________________________________________
+activation_50 (Activation)      (None, 72, 72, 32)   0           batch_normalization_1[0][0]      
+__________________________________________________________________________________________________
+conv2d_2 (Conv2D)               (None, 72, 72, 64)   18432       activation_50[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_2 (BatchNor (None, 72, 72, 64)   192         conv2d_2[0][0]                   
+__________________________________________________________________________________________________
+activation_51 (Activation)      (None, 72, 72, 64)   0           batch_normalization_2[0][0]      
+__________________________________________________________________________________________________
+max_pooling2d_1 (MaxPooling2D)  (None, 35, 35, 64)   0           activation_51[0][0]              
+__________________________________________________________________________________________________
+conv2d_3 (Conv2D)               (None, 35, 35, 80)   5120        max_pooling2d_1[0][0]            
+__________________________________________________________________________________________________
+batch_normalization_3 (BatchNor (None, 35, 35, 80)   240         conv2d_3[0][0]                   
+__________________________________________________________________________________________________
+activation_52 (Activation)      (None, 35, 35, 80)   0           batch_normalization_3[0][0]      
+__________________________________________________________________________________________________
+conv2d_4 (Conv2D)               (None, 33, 33, 192)  138240      activation_52[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_4 (BatchNor (None, 33, 33, 192)  576         conv2d_4[0][0]                   
+__________________________________________________________________________________________________
+activation_53 (Activation)      (None, 33, 33, 192)  0           batch_normalization_4[0][0]      
+__________________________________________________________________________________________________
+max_pooling2d_2 (MaxPooling2D)  (None, 16, 16, 192)  0           activation_53[0][0]              
+__________________________________________________________________________________________________
+conv2d_8 (Conv2D)               (None, 16, 16, 64)   12288       max_pooling2d_2[0][0]            
+__________________________________________________________________________________________________
+batch_normalization_8 (BatchNor (None, 16, 16, 64)   192         conv2d_8[0][0]                   
+__________________________________________________________________________________________________
+activation_57 (Activation)      (None, 16, 16, 64)   0           batch_normalization_8[0][0]      
+__________________________________________________________________________________________________
+conv2d_6 (Conv2D)               (None, 16, 16, 48)   9216        max_pooling2d_2[0][0]            
+__________________________________________________________________________________________________
+conv2d_9 (Conv2D)               (None, 16, 16, 96)   55296       activation_57[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_6 (BatchNor (None, 16, 16, 48)   144         conv2d_6[0][0]                   
+__________________________________________________________________________________________________
+batch_normalization_9 (BatchNor (None, 16, 16, 96)   288         conv2d_9[0][0]                   
+__________________________________________________________________________________________________
+activation_55 (Activation)      (None, 16, 16, 48)   0           batch_normalization_6[0][0]      
+__________________________________________________________________________________________________
+activation_58 (Activation)      (None, 16, 16, 96)   0           batch_normalization_9[0][0]      
+__________________________________________________________________________________________________
+average_pooling2d (AveragePooli (None, 16, 16, 192)  0           max_pooling2d_2[0][0]            
+__________________________________________________________________________________________________
+conv2d_5 (Conv2D)               (None, 16, 16, 64)   12288       max_pooling2d_2[0][0]            
+__________________________________________________________________________________________________
+conv2d_7 (Conv2D)               (None, 16, 16, 64)   76800       activation_55[0][0]              
+__________________________________________________________________________________________________
+conv2d_10 (Conv2D)              (None, 16, 16, 96)   82944       activation_58[0][0]              
+__________________________________________________________________________________________________
+conv2d_11 (Conv2D)              (None, 16, 16, 32)   6144        average_pooling2d[0][0]          
+__________________________________________________________________________________________________
+batch_normalization_5 (BatchNor (None, 16, 16, 64)   192         conv2d_5[0][0]                   
+__________________________________________________________________________________________________
+batch_normalization_7 (BatchNor (None, 16, 16, 64)   192         conv2d_7[0][0]                   
+__________________________________________________________________________________________________
+batch_normalization_10 (BatchNo (None, 16, 16, 96)   288         conv2d_10[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_11 (BatchNo (None, 16, 16, 32)   96          conv2d_11[0][0]                  
+__________________________________________________________________________________________________
+activation_54 (Activation)      (None, 16, 16, 64)   0           batch_normalization_5[0][0]      
+__________________________________________________________________________________________________
+activation_56 (Activation)      (None, 16, 16, 64)   0           batch_normalization_7[0][0]      
+__________________________________________________________________________________________________
+activation_59 (Activation)      (None, 16, 16, 96)   0           batch_normalization_10[0][0]     
+__________________________________________________________________________________________________
+activation_60 (Activation)      (None, 16, 16, 32)   0           batch_normalization_11[0][0]     
+__________________________________________________________________________________________________
+mixed0 (Concatenate)            (None, 16, 16, 256)  0           activation_54[0][0]              
+                                                                 activation_56[0][0]              
+                                                                 activation_59[0][0]              
+                                                                 activation_60[0][0]              
+__________________________________________________________________________________________________
+conv2d_15 (Conv2D)              (None, 16, 16, 64)   16384       mixed0[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_15 (BatchNo (None, 16, 16, 64)   192         conv2d_15[0][0]                  
+__________________________________________________________________________________________________
+activation_64 (Activation)      (None, 16, 16, 64)   0           batch_normalization_15[0][0]     
+__________________________________________________________________________________________________
+conv2d_13 (Conv2D)              (None, 16, 16, 48)   12288       mixed0[0][0]                     
+__________________________________________________________________________________________________
+conv2d_16 (Conv2D)              (None, 16, 16, 96)   55296       activation_64[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_13 (BatchNo (None, 16, 16, 48)   144         conv2d_13[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_16 (BatchNo (None, 16, 16, 96)   288         conv2d_16[0][0]                  
+__________________________________________________________________________________________________
+activation_62 (Activation)      (None, 16, 16, 48)   0           batch_normalization_13[0][0]     
+__________________________________________________________________________________________________
+activation_65 (Activation)      (None, 16, 16, 96)   0           batch_normalization_16[0][0]     
+__________________________________________________________________________________________________
+average_pooling2d_1 (AveragePoo (None, 16, 16, 256)  0           mixed0[0][0]                     
+__________________________________________________________________________________________________
+conv2d_12 (Conv2D)              (None, 16, 16, 64)   16384       mixed0[0][0]                     
+__________________________________________________________________________________________________
+conv2d_14 (Conv2D)              (None, 16, 16, 64)   76800       activation_62[0][0]              
+__________________________________________________________________________________________________
+conv2d_17 (Conv2D)              (None, 16, 16, 96)   82944       activation_65[0][0]              
+__________________________________________________________________________________________________
+conv2d_18 (Conv2D)              (None, 16, 16, 64)   16384       average_pooling2d_1[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_12 (BatchNo (None, 16, 16, 64)   192         conv2d_12[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_14 (BatchNo (None, 16, 16, 64)   192         conv2d_14[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_17 (BatchNo (None, 16, 16, 96)   288         conv2d_17[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_18 (BatchNo (None, 16, 16, 64)   192         conv2d_18[0][0]                  
+__________________________________________________________________________________________________
+activation_61 (Activation)      (None, 16, 16, 64)   0           batch_normalization_12[0][0]     
+__________________________________________________________________________________________________
+activation_63 (Activation)      (None, 16, 16, 64)   0           batch_normalization_14[0][0]     
+__________________________________________________________________________________________________
+activation_66 (Activation)      (None, 16, 16, 96)   0           batch_normalization_17[0][0]     
+__________________________________________________________________________________________________
+activation_67 (Activation)      (None, 16, 16, 64)   0           batch_normalization_18[0][0]     
+__________________________________________________________________________________________________
+mixed1 (Concatenate)            (None, 16, 16, 288)  0           activation_61[0][0]              
+                                                                 activation_63[0][0]              
+                                                                 activation_66[0][0]              
+                                                                 activation_67[0][0]              
+__________________________________________________________________________________________________
+conv2d_22 (Conv2D)              (None, 16, 16, 64)   18432       mixed1[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_22 (BatchNo (None, 16, 16, 64)   192         conv2d_22[0][0]                  
+__________________________________________________________________________________________________
+activation_71 (Activation)      (None, 16, 16, 64)   0           batch_normalization_22[0][0]     
+__________________________________________________________________________________________________
+conv2d_20 (Conv2D)              (None, 16, 16, 48)   13824       mixed1[0][0]                     
+__________________________________________________________________________________________________
+conv2d_23 (Conv2D)              (None, 16, 16, 96)   55296       activation_71[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_20 (BatchNo (None, 16, 16, 48)   144         conv2d_20[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_23 (BatchNo (None, 16, 16, 96)   288         conv2d_23[0][0]                  
+__________________________________________________________________________________________________
+activation_69 (Activation)      (None, 16, 16, 48)   0           batch_normalization_20[0][0]     
+__________________________________________________________________________________________________
+activation_72 (Activation)      (None, 16, 16, 96)   0           batch_normalization_23[0][0]     
+__________________________________________________________________________________________________
+average_pooling2d_2 (AveragePoo (None, 16, 16, 288)  0           mixed1[0][0]                     
+__________________________________________________________________________________________________
+conv2d_19 (Conv2D)              (None, 16, 16, 64)   18432       mixed1[0][0]                     
+__________________________________________________________________________________________________
+conv2d_21 (Conv2D)              (None, 16, 16, 64)   76800       activation_69[0][0]              
+__________________________________________________________________________________________________
+conv2d_24 (Conv2D)              (None, 16, 16, 96)   82944       activation_72[0][0]              
+__________________________________________________________________________________________________
+conv2d_25 (Conv2D)              (None, 16, 16, 64)   18432       average_pooling2d_2[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_19 (BatchNo (None, 16, 16, 64)   192         conv2d_19[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_21 (BatchNo (None, 16, 16, 64)   192         conv2d_21[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_24 (BatchNo (None, 16, 16, 96)   288         conv2d_24[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_25 (BatchNo (None, 16, 16, 64)   192         conv2d_25[0][0]                  
+__________________________________________________________________________________________________
+activation_68 (Activation)      (None, 16, 16, 64)   0           batch_normalization_19[0][0]     
+__________________________________________________________________________________________________
+activation_70 (Activation)      (None, 16, 16, 64)   0           batch_normalization_21[0][0]     
+__________________________________________________________________________________________________
+activation_73 (Activation)      (None, 16, 16, 96)   0           batch_normalization_24[0][0]     
+__________________________________________________________________________________________________
+activation_74 (Activation)      (None, 16, 16, 64)   0           batch_normalization_25[0][0]     
+__________________________________________________________________________________________________
+mixed2 (Concatenate)            (None, 16, 16, 288)  0           activation_68[0][0]              
+                                                                 activation_70[0][0]              
+                                                                 activation_73[0][0]              
+                                                                 activation_74[0][0]              
+__________________________________________________________________________________________________
+conv2d_27 (Conv2D)              (None, 16, 16, 64)   18432       mixed2[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_27 (BatchNo (None, 16, 16, 64)   192         conv2d_27[0][0]                  
+__________________________________________________________________________________________________
+activation_76 (Activation)      (None, 16, 16, 64)   0           batch_normalization_27[0][0]     
+__________________________________________________________________________________________________
+conv2d_28 (Conv2D)              (None, 16, 16, 96)   55296       activation_76[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_28 (BatchNo (None, 16, 16, 96)   288         conv2d_28[0][0]                  
+__________________________________________________________________________________________________
+activation_77 (Activation)      (None, 16, 16, 96)   0           batch_normalization_28[0][0]     
+__________________________________________________________________________________________________
+conv2d_26 (Conv2D)              (None, 7, 7, 384)    995328      mixed2[0][0]                     
+__________________________________________________________________________________________________
+conv2d_29 (Conv2D)              (None, 7, 7, 96)     82944       activation_77[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_26 (BatchNo (None, 7, 7, 384)    1152        conv2d_26[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_29 (BatchNo (None, 7, 7, 96)     288         conv2d_29[0][0]                  
+__________________________________________________________________________________________________
+activation_75 (Activation)      (None, 7, 7, 384)    0           batch_normalization_26[0][0]     
+__________________________________________________________________________________________________
+activation_78 (Activation)      (None, 7, 7, 96)     0           batch_normalization_29[0][0]     
+__________________________________________________________________________________________________
+max_pooling2d_3 (MaxPooling2D)  (None, 7, 7, 288)    0           mixed2[0][0]                     
+__________________________________________________________________________________________________
+mixed3 (Concatenate)            (None, 7, 7, 768)    0           activation_75[0][0]              
+                                                                 activation_78[0][0]              
+                                                                 max_pooling2d_3[0][0]            
+__________________________________________________________________________________________________
+conv2d_34 (Conv2D)              (None, 7, 7, 128)    98304       mixed3[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_34 (BatchNo (None, 7, 7, 128)    384         conv2d_34[0][0]                  
+__________________________________________________________________________________________________
+activation_83 (Activation)      (None, 7, 7, 128)    0           batch_normalization_34[0][0]     
+__________________________________________________________________________________________________
+conv2d_35 (Conv2D)              (None, 7, 7, 128)    114688      activation_83[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_35 (BatchNo (None, 7, 7, 128)    384         conv2d_35[0][0]                  
+__________________________________________________________________________________________________
+activation_84 (Activation)      (None, 7, 7, 128)    0           batch_normalization_35[0][0]     
+__________________________________________________________________________________________________
+conv2d_31 (Conv2D)              (None, 7, 7, 128)    98304       mixed3[0][0]                     
+__________________________________________________________________________________________________
+conv2d_36 (Conv2D)              (None, 7, 7, 128)    114688      activation_84[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_31 (BatchNo (None, 7, 7, 128)    384         conv2d_31[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_36 (BatchNo (None, 7, 7, 128)    384         conv2d_36[0][0]                  
+__________________________________________________________________________________________________
+activation_80 (Activation)      (None, 7, 7, 128)    0           batch_normalization_31[0][0]     
+__________________________________________________________________________________________________
+activation_85 (Activation)      (None, 7, 7, 128)    0           batch_normalization_36[0][0]     
+__________________________________________________________________________________________________
+conv2d_32 (Conv2D)              (None, 7, 7, 128)    114688      activation_80[0][0]              
+__________________________________________________________________________________________________
+conv2d_37 (Conv2D)              (None, 7, 7, 128)    114688      activation_85[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_32 (BatchNo (None, 7, 7, 128)    384         conv2d_32[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_37 (BatchNo (None, 7, 7, 128)    384         conv2d_37[0][0]                  
+__________________________________________________________________________________________________
+activation_81 (Activation)      (None, 7, 7, 128)    0           batch_normalization_32[0][0]     
+__________________________________________________________________________________________________
+activation_86 (Activation)      (None, 7, 7, 128)    0           batch_normalization_37[0][0]     
+__________________________________________________________________________________________________
+average_pooling2d_3 (AveragePoo (None, 7, 7, 768)    0           mixed3[0][0]                     
+__________________________________________________________________________________________________
+conv2d_30 (Conv2D)              (None, 7, 7, 192)    147456      mixed3[0][0]                     
+__________________________________________________________________________________________________
+conv2d_33 (Conv2D)              (None, 7, 7, 192)    172032      activation_81[0][0]              
+__________________________________________________________________________________________________
+conv2d_38 (Conv2D)              (None, 7, 7, 192)    172032      activation_86[0][0]              
+__________________________________________________________________________________________________
+conv2d_39 (Conv2D)              (None, 7, 7, 192)    147456      average_pooling2d_3[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_30 (BatchNo (None, 7, 7, 192)    576         conv2d_30[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_33 (BatchNo (None, 7, 7, 192)    576         conv2d_33[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_38 (BatchNo (None, 7, 7, 192)    576         conv2d_38[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_39 (BatchNo (None, 7, 7, 192)    576         conv2d_39[0][0]                  
+__________________________________________________________________________________________________
+activation_79 (Activation)      (None, 7, 7, 192)    0           batch_normalization_30[0][0]     
+__________________________________________________________________________________________________
+activation_82 (Activation)      (None, 7, 7, 192)    0           batch_normalization_33[0][0]     
+__________________________________________________________________________________________________
+activation_87 (Activation)      (None, 7, 7, 192)    0           batch_normalization_38[0][0]     
+__________________________________________________________________________________________________
+activation_88 (Activation)      (None, 7, 7, 192)    0           batch_normalization_39[0][0]     
+__________________________________________________________________________________________________
+mixed4 (Concatenate)            (None, 7, 7, 768)    0           activation_79[0][0]              
+                                                                 activation_82[0][0]              
+                                                                 activation_87[0][0]              
+                                                                 activation_88[0][0]              
+__________________________________________________________________________________________________
+conv2d_44 (Conv2D)              (None, 7, 7, 160)    122880      mixed4[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_44 (BatchNo (None, 7, 7, 160)    480         conv2d_44[0][0]                  
+__________________________________________________________________________________________________
+activation_93 (Activation)      (None, 7, 7, 160)    0           batch_normalization_44[0][0]     
+__________________________________________________________________________________________________
+conv2d_45 (Conv2D)              (None, 7, 7, 160)    179200      activation_93[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_45 (BatchNo (None, 7, 7, 160)    480         conv2d_45[0][0]                  
+__________________________________________________________________________________________________
+activation_94 (Activation)      (None, 7, 7, 160)    0           batch_normalization_45[0][0]     
+__________________________________________________________________________________________________
+conv2d_41 (Conv2D)              (None, 7, 7, 160)    122880      mixed4[0][0]                     
+__________________________________________________________________________________________________
+conv2d_46 (Conv2D)              (None, 7, 7, 160)    179200      activation_94[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_41 (BatchNo (None, 7, 7, 160)    480         conv2d_41[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_46 (BatchNo (None, 7, 7, 160)    480         conv2d_46[0][0]                  
+__________________________________________________________________________________________________
+activation_90 (Activation)      (None, 7, 7, 160)    0           batch_normalization_41[0][0]     
+__________________________________________________________________________________________________
+activation_95 (Activation)      (None, 7, 7, 160)    0           batch_normalization_46[0][0]     
+__________________________________________________________________________________________________
+conv2d_42 (Conv2D)              (None, 7, 7, 160)    179200      activation_90[0][0]              
+__________________________________________________________________________________________________
+conv2d_47 (Conv2D)              (None, 7, 7, 160)    179200      activation_95[0][0]              
+__________________________________________________________________________________________________
+batch_normalization_42 (BatchNo (None, 7, 7, 160)    480         conv2d_42[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_47 (BatchNo (None, 7, 7, 160)    480         conv2d_47[0][0]                  
+__________________________________________________________________________________________________
+activation_91 (Activation)      (None, 7, 7, 160)    0           batch_normalization_42[0][0]     
+__________________________________________________________________________________________________
+activation_96 (Activation)      (None, 7, 7, 160)    0           batch_normalization_47[0][0]     
+__________________________________________________________________________________________________
+average_pooling2d_4 (AveragePoo (None, 7, 7, 768)    0           mixed4[0][0]                     
+__________________________________________________________________________________________________
+conv2d_40 (Conv2D)              (None, 7, 7, 192)    147456      mixed4[0][0]                     
+__________________________________________________________________________________________________
+conv2d_43 (Conv2D)              (None, 7, 7, 192)    215040      activation_91[0][0]              
+__________________________________________________________________________________________________
+conv2d_48 (Conv2D)              (None, 7, 7, 192)    215040      activation_96[0][0]              
+__________________________________________________________________________________________________
+conv2d_49 (Conv2D)              (None, 7, 7, 192)    147456      average_pooling2d_4[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_40 (BatchNo (None, 7, 7, 192)    576         conv2d_40[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_43 (BatchNo (None, 7, 7, 192)    576         conv2d_43[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_48 (BatchNo (None, 7, 7, 192)    576         conv2d_48[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_49 (BatchNo (None, 7, 7, 192)    576         conv2d_49[0][0]                  
+__________________________________________________________________________________________________
+activation_89 (Activation)      (None, 7, 7, 192)    0           batch_normalization_40[0][0]     
+__________________________________________________________________________________________________
+activation_92 (Activation)      (None, 7, 7, 192)    0           batch_normalization_43[0][0]     
+__________________________________________________________________________________________________
+activation_97 (Activation)      (None, 7, 7, 192)    0           batch_normalization_48[0][0]     
+__________________________________________________________________________________________________
+activation_98 (Activation)      (None, 7, 7, 192)    0           batch_normalization_49[0][0]     
+__________________________________________________________________________________________________
+mixed5 (Concatenate)            (None, 7, 7, 768)    0           activation_89[0][0]              
+                                                                 activation_92[0][0]              
+                                                                 activation_97[0][0]              
+                                                                 activation_98[0][0]              
+__________________________________________________________________________________________________
+conv2d_54 (Conv2D)              (None, 7, 7, 160)    122880      mixed5[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_54 (BatchNo (None, 7, 7, 160)    480         conv2d_54[0][0]                  
+__________________________________________________________________________________________________
+activation_103 (Activation)     (None, 7, 7, 160)    0           batch_normalization_54[0][0]     
+__________________________________________________________________________________________________
+conv2d_55 (Conv2D)              (None, 7, 7, 160)    179200      activation_103[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_55 (BatchNo (None, 7, 7, 160)    480         conv2d_55[0][0]                  
+__________________________________________________________________________________________________
+activation_104 (Activation)     (None, 7, 7, 160)    0           batch_normalization_55[0][0]     
+__________________________________________________________________________________________________
+conv2d_51 (Conv2D)              (None, 7, 7, 160)    122880      mixed5[0][0]                     
+__________________________________________________________________________________________________
+conv2d_56 (Conv2D)              (None, 7, 7, 160)    179200      activation_104[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_51 (BatchNo (None, 7, 7, 160)    480         conv2d_51[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_56 (BatchNo (None, 7, 7, 160)    480         conv2d_56[0][0]                  
+__________________________________________________________________________________________________
+activation_100 (Activation)     (None, 7, 7, 160)    0           batch_normalization_51[0][0]     
+__________________________________________________________________________________________________
+activation_105 (Activation)     (None, 7, 7, 160)    0           batch_normalization_56[0][0]     
+__________________________________________________________________________________________________
+conv2d_52 (Conv2D)              (None, 7, 7, 160)    179200      activation_100[0][0]             
+__________________________________________________________________________________________________
+conv2d_57 (Conv2D)              (None, 7, 7, 160)    179200      activation_105[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_52 (BatchNo (None, 7, 7, 160)    480         conv2d_52[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_57 (BatchNo (None, 7, 7, 160)    480         conv2d_57[0][0]                  
+__________________________________________________________________________________________________
+activation_101 (Activation)     (None, 7, 7, 160)    0           batch_normalization_52[0][0]     
+__________________________________________________________________________________________________
+activation_106 (Activation)     (None, 7, 7, 160)    0           batch_normalization_57[0][0]     
+__________________________________________________________________________________________________
+average_pooling2d_5 (AveragePoo (None, 7, 7, 768)    0           mixed5[0][0]                     
+__________________________________________________________________________________________________
+conv2d_50 (Conv2D)              (None, 7, 7, 192)    147456      mixed5[0][0]                     
+__________________________________________________________________________________________________
+conv2d_53 (Conv2D)              (None, 7, 7, 192)    215040      activation_101[0][0]             
+__________________________________________________________________________________________________
+conv2d_58 (Conv2D)              (None, 7, 7, 192)    215040      activation_106[0][0]             
+__________________________________________________________________________________________________
+conv2d_59 (Conv2D)              (None, 7, 7, 192)    147456      average_pooling2d_5[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_50 (BatchNo (None, 7, 7, 192)    576         conv2d_50[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_53 (BatchNo (None, 7, 7, 192)    576         conv2d_53[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_58 (BatchNo (None, 7, 7, 192)    576         conv2d_58[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_59 (BatchNo (None, 7, 7, 192)    576         conv2d_59[0][0]                  
+__________________________________________________________________________________________________
+activation_99 (Activation)      (None, 7, 7, 192)    0           batch_normalization_50[0][0]     
+__________________________________________________________________________________________________
+activation_102 (Activation)     (None, 7, 7, 192)    0           batch_normalization_53[0][0]     
+__________________________________________________________________________________________________
+activation_107 (Activation)     (None, 7, 7, 192)    0           batch_normalization_58[0][0]     
+__________________________________________________________________________________________________
+activation_108 (Activation)     (None, 7, 7, 192)    0           batch_normalization_59[0][0]     
+__________________________________________________________________________________________________
+mixed6 (Concatenate)            (None, 7, 7, 768)    0           activation_99[0][0]              
+                                                                 activation_102[0][0]             
+                                                                 activation_107[0][0]             
+                                                                 activation_108[0][0]             
+__________________________________________________________________________________________________
+conv2d_64 (Conv2D)              (None, 7, 7, 192)    147456      mixed6[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_64 (BatchNo (None, 7, 7, 192)    576         conv2d_64[0][0]                  
+__________________________________________________________________________________________________
+activation_113 (Activation)     (None, 7, 7, 192)    0           batch_normalization_64[0][0]     
+__________________________________________________________________________________________________
+conv2d_65 (Conv2D)              (None, 7, 7, 192)    258048      activation_113[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_65 (BatchNo (None, 7, 7, 192)    576         conv2d_65[0][0]                  
+__________________________________________________________________________________________________
+activation_114 (Activation)     (None, 7, 7, 192)    0           batch_normalization_65[0][0]     
+__________________________________________________________________________________________________
+conv2d_61 (Conv2D)              (None, 7, 7, 192)    147456      mixed6[0][0]                     
+__________________________________________________________________________________________________
+conv2d_66 (Conv2D)              (None, 7, 7, 192)    258048      activation_114[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_61 (BatchNo (None, 7, 7, 192)    576         conv2d_61[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_66 (BatchNo (None, 7, 7, 192)    576         conv2d_66[0][0]                  
+__________________________________________________________________________________________________
+activation_110 (Activation)     (None, 7, 7, 192)    0           batch_normalization_61[0][0]     
+__________________________________________________________________________________________________
+activation_115 (Activation)     (None, 7, 7, 192)    0           batch_normalization_66[0][0]     
+__________________________________________________________________________________________________
+conv2d_62 (Conv2D)              (None, 7, 7, 192)    258048      activation_110[0][0]             
+__________________________________________________________________________________________________
+conv2d_67 (Conv2D)              (None, 7, 7, 192)    258048      activation_115[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_62 (BatchNo (None, 7, 7, 192)    576         conv2d_62[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_67 (BatchNo (None, 7, 7, 192)    576         conv2d_67[0][0]                  
+__________________________________________________________________________________________________
+activation_111 (Activation)     (None, 7, 7, 192)    0           batch_normalization_62[0][0]     
+__________________________________________________________________________________________________
+activation_116 (Activation)     (None, 7, 7, 192)    0           batch_normalization_67[0][0]     
+__________________________________________________________________________________________________
+average_pooling2d_6 (AveragePoo (None, 7, 7, 768)    0           mixed6[0][0]                     
+__________________________________________________________________________________________________
+conv2d_60 (Conv2D)              (None, 7, 7, 192)    147456      mixed6[0][0]                     
+__________________________________________________________________________________________________
+conv2d_63 (Conv2D)              (None, 7, 7, 192)    258048      activation_111[0][0]             
+__________________________________________________________________________________________________
+conv2d_68 (Conv2D)              (None, 7, 7, 192)    258048      activation_116[0][0]             
+__________________________________________________________________________________________________
+conv2d_69 (Conv2D)              (None, 7, 7, 192)    147456      average_pooling2d_6[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_60 (BatchNo (None, 7, 7, 192)    576         conv2d_60[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_63 (BatchNo (None, 7, 7, 192)    576         conv2d_63[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_68 (BatchNo (None, 7, 7, 192)    576         conv2d_68[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_69 (BatchNo (None, 7, 7, 192)    576         conv2d_69[0][0]                  
+__________________________________________________________________________________________________
+activation_109 (Activation)     (None, 7, 7, 192)    0           batch_normalization_60[0][0]     
+__________________________________________________________________________________________________
+activation_112 (Activation)     (None, 7, 7, 192)    0           batch_normalization_63[0][0]     
+__________________________________________________________________________________________________
+activation_117 (Activation)     (None, 7, 7, 192)    0           batch_normalization_68[0][0]     
+__________________________________________________________________________________________________
+activation_118 (Activation)     (None, 7, 7, 192)    0           batch_normalization_69[0][0]     
+__________________________________________________________________________________________________
+mixed7 (Concatenate)            (None, 7, 7, 768)    0           activation_109[0][0]             
+                                                                 activation_112[0][0]             
+                                                                 activation_117[0][0]             
+                                                                 activation_118[0][0]             
+__________________________________________________________________________________________________
+conv2d_72 (Conv2D)              (None, 7, 7, 192)    147456      mixed7[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_72 (BatchNo (None, 7, 7, 192)    576         conv2d_72[0][0]                  
+__________________________________________________________________________________________________
+activation_121 (Activation)     (None, 7, 7, 192)    0           batch_normalization_72[0][0]     
+__________________________________________________________________________________________________
+conv2d_73 (Conv2D)              (None, 7, 7, 192)    258048      activation_121[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_73 (BatchNo (None, 7, 7, 192)    576         conv2d_73[0][0]                  
+__________________________________________________________________________________________________
+activation_122 (Activation)     (None, 7, 7, 192)    0           batch_normalization_73[0][0]     
+__________________________________________________________________________________________________
+conv2d_70 (Conv2D)              (None, 7, 7, 192)    147456      mixed7[0][0]                     
+__________________________________________________________________________________________________
+conv2d_74 (Conv2D)              (None, 7, 7, 192)    258048      activation_122[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_70 (BatchNo (None, 7, 7, 192)    576         conv2d_70[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_74 (BatchNo (None, 7, 7, 192)    576         conv2d_74[0][0]                  
+__________________________________________________________________________________________________
+activation_119 (Activation)     (None, 7, 7, 192)    0           batch_normalization_70[0][0]     
+__________________________________________________________________________________________________
+activation_123 (Activation)     (None, 7, 7, 192)    0           batch_normalization_74[0][0]     
+__________________________________________________________________________________________________
+conv2d_71 (Conv2D)              (None, 3, 3, 320)    552960      activation_119[0][0]             
+__________________________________________________________________________________________________
+conv2d_75 (Conv2D)              (None, 3, 3, 192)    331776      activation_123[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_71 (BatchNo (None, 3, 3, 320)    960         conv2d_71[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_75 (BatchNo (None, 3, 3, 192)    576         conv2d_75[0][0]                  
+__________________________________________________________________________________________________
+activation_120 (Activation)     (None, 3, 3, 320)    0           batch_normalization_71[0][0]     
+__________________________________________________________________________________________________
+activation_124 (Activation)     (None, 3, 3, 192)    0           batch_normalization_75[0][0]     
+__________________________________________________________________________________________________
+max_pooling2d_4 (MaxPooling2D)  (None, 3, 3, 768)    0           mixed7[0][0]                     
+__________________________________________________________________________________________________
+mixed8 (Concatenate)            (None, 3, 3, 1280)   0           activation_120[0][0]             
+                                                                 activation_124[0][0]             
+                                                                 max_pooling2d_4[0][0]            
+__________________________________________________________________________________________________
+conv2d_80 (Conv2D)              (None, 3, 3, 448)    573440      mixed8[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_80 (BatchNo (None, 3, 3, 448)    1344        conv2d_80[0][0]                  
+__________________________________________________________________________________________________
+activation_129 (Activation)     (None, 3, 3, 448)    0           batch_normalization_80[0][0]     
+__________________________________________________________________________________________________
+conv2d_77 (Conv2D)              (None, 3, 3, 384)    491520      mixed8[0][0]                     
+__________________________________________________________________________________________________
+conv2d_81 (Conv2D)              (None, 3, 3, 384)    1548288     activation_129[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_77 (BatchNo (None, 3, 3, 384)    1152        conv2d_77[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_81 (BatchNo (None, 3, 3, 384)    1152        conv2d_81[0][0]                  
+__________________________________________________________________________________________________
+activation_126 (Activation)     (None, 3, 3, 384)    0           batch_normalization_77[0][0]     
+__________________________________________________________________________________________________
+activation_130 (Activation)     (None, 3, 3, 384)    0           batch_normalization_81[0][0]     
+__________________________________________________________________________________________________
+conv2d_78 (Conv2D)              (None, 3, 3, 384)    442368      activation_126[0][0]             
+__________________________________________________________________________________________________
+conv2d_79 (Conv2D)              (None, 3, 3, 384)    442368      activation_126[0][0]             
+__________________________________________________________________________________________________
+conv2d_82 (Conv2D)              (None, 3, 3, 384)    442368      activation_130[0][0]             
+__________________________________________________________________________________________________
+conv2d_83 (Conv2D)              (None, 3, 3, 384)    442368      activation_130[0][0]             
+__________________________________________________________________________________________________
+average_pooling2d_7 (AveragePoo (None, 3, 3, 1280)   0           mixed8[0][0]                     
+__________________________________________________________________________________________________
+conv2d_76 (Conv2D)              (None, 3, 3, 320)    409600      mixed8[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_78 (BatchNo (None, 3, 3, 384)    1152        conv2d_78[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_79 (BatchNo (None, 3, 3, 384)    1152        conv2d_79[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_82 (BatchNo (None, 3, 3, 384)    1152        conv2d_82[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_83 (BatchNo (None, 3, 3, 384)    1152        conv2d_83[0][0]                  
+__________________________________________________________________________________________________
+conv2d_84 (Conv2D)              (None, 3, 3, 192)    245760      average_pooling2d_7[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_76 (BatchNo (None, 3, 3, 320)    960         conv2d_76[0][0]                  
+__________________________________________________________________________________________________
+activation_127 (Activation)     (None, 3, 3, 384)    0           batch_normalization_78[0][0]     
+__________________________________________________________________________________________________
+activation_128 (Activation)     (None, 3, 3, 384)    0           batch_normalization_79[0][0]     
+__________________________________________________________________________________________________
+activation_131 (Activation)     (None, 3, 3, 384)    0           batch_normalization_82[0][0]     
+__________________________________________________________________________________________________
+activation_132 (Activation)     (None, 3, 3, 384)    0           batch_normalization_83[0][0]     
+__________________________________________________________________________________________________
+batch_normalization_84 (BatchNo (None, 3, 3, 192)    576         conv2d_84[0][0]                  
+__________________________________________________________________________________________________
+activation_125 (Activation)     (None, 3, 3, 320)    0           batch_normalization_76[0][0]     
+__________________________________________________________________________________________________
+mixed9_0 (Concatenate)          (None, 3, 3, 768)    0           activation_127[0][0]             
+                                                                 activation_128[0][0]             
+__________________________________________________________________________________________________
+concatenate (Concatenate)       (None, 3, 3, 768)    0           activation_131[0][0]             
+                                                                 activation_132[0][0]             
+__________________________________________________________________________________________________
+activation_133 (Activation)     (None, 3, 3, 192)    0           batch_normalization_84[0][0]     
+__________________________________________________________________________________________________
+mixed9 (Concatenate)            (None, 3, 3, 2048)   0           activation_125[0][0]             
+                                                                 mixed9_0[0][0]                   
+                                                                 concatenate[0][0]                
+                                                                 activation_133[0][0]             
+__________________________________________________________________________________________________
+conv2d_89 (Conv2D)              (None, 3, 3, 448)    917504      mixed9[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_89 (BatchNo (None, 3, 3, 448)    1344        conv2d_89[0][0]                  
+__________________________________________________________________________________________________
+activation_138 (Activation)     (None, 3, 3, 448)    0           batch_normalization_89[0][0]     
+__________________________________________________________________________________________________
+conv2d_86 (Conv2D)              (None, 3, 3, 384)    786432      mixed9[0][0]                     
+__________________________________________________________________________________________________
+conv2d_90 (Conv2D)              (None, 3, 3, 384)    1548288     activation_138[0][0]             
+__________________________________________________________________________________________________
+batch_normalization_86 (BatchNo (None, 3, 3, 384)    1152        conv2d_86[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_90 (BatchNo (None, 3, 3, 384)    1152        conv2d_90[0][0]                  
+__________________________________________________________________________________________________
+activation_135 (Activation)     (None, 3, 3, 384)    0           batch_normalization_86[0][0]     
+__________________________________________________________________________________________________
+activation_139 (Activation)     (None, 3, 3, 384)    0           batch_normalization_90[0][0]     
+__________________________________________________________________________________________________
+conv2d_87 (Conv2D)              (None, 3, 3, 384)    442368      activation_135[0][0]             
+__________________________________________________________________________________________________
+conv2d_88 (Conv2D)              (None, 3, 3, 384)    442368      activation_135[0][0]             
+__________________________________________________________________________________________________
+conv2d_91 (Conv2D)              (None, 3, 3, 384)    442368      activation_139[0][0]             
+__________________________________________________________________________________________________
+conv2d_92 (Conv2D)              (None, 3, 3, 384)    442368      activation_139[0][0]             
+__________________________________________________________________________________________________
+average_pooling2d_8 (AveragePoo (None, 3, 3, 2048)   0           mixed9[0][0]                     
+__________________________________________________________________________________________________
+conv2d_85 (Conv2D)              (None, 3, 3, 320)    655360      mixed9[0][0]                     
+__________________________________________________________________________________________________
+batch_normalization_87 (BatchNo (None, 3, 3, 384)    1152        conv2d_87[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_88 (BatchNo (None, 3, 3, 384)    1152        conv2d_88[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_91 (BatchNo (None, 3, 3, 384)    1152        conv2d_91[0][0]                  
+__________________________________________________________________________________________________
+batch_normalization_92 (BatchNo (None, 3, 3, 384)    1152        conv2d_92[0][0]                  
+__________________________________________________________________________________________________
+conv2d_93 (Conv2D)              (None, 3, 3, 192)    393216      average_pooling2d_8[0][0]        
+__________________________________________________________________________________________________
+batch_normalization_85 (BatchNo (None, 3, 3, 320)    960         conv2d_85[0][0]                  
+__________________________________________________________________________________________________
+activation_136 (Activation)     (None, 3, 3, 384)    0           batch_normalization_87[0][0]     
+__________________________________________________________________________________________________
+activation_137 (Activation)     (None, 3, 3, 384)    0           batch_normalization_88[0][0]     
+__________________________________________________________________________________________________
+activation_140 (Activation)     (None, 3, 3, 384)    0           batch_normalization_91[0][0]     
+__________________________________________________________________________________________________
+activation_141 (Activation)     (None, 3, 3, 384)    0           batch_normalization_92[0][0]     
+__________________________________________________________________________________________________
+batch_normalization_93 (BatchNo (None, 3, 3, 192)    576         conv2d_93[0][0]                  
+__________________________________________________________________________________________________
+activation_134 (Activation)     (None, 3, 3, 320)    0           batch_normalization_85[0][0]     
+__________________________________________________________________________________________________
+mixed9_1 (Concatenate)          (None, 3, 3, 768)    0           activation_136[0][0]             
+                                                                 activation_137[0][0]             
+__________________________________________________________________________________________________
+concatenate_1 (Concatenate)     (None, 3, 3, 768)    0           activation_140[0][0]             
+                                                                 activation_141[0][0]             
+__________________________________________________________________________________________________
+activation_142 (Activation)     (None, 3, 3, 192)    0           batch_normalization_93[0][0]     
+__________________________________________________________________________________________________
+mixed10 (Concatenate)           (None, 3, 3, 2048)   0           activation_134[0][0]             
+                                                                 mixed9_1[0][0]                   
+                                                                 concatenate_1[0][0]              
+                                                                 activation_142[0][0]             
+__________________________________________________________________________________________________
+global_average_pooling2d (Globa (None, 2048)         0           mixed10[0][0]                    
+__________________________________________________________________________________________________
+dense (Dense)                   (None, 2048)         4196352     global_average_pooling2d[0][0]   
+__________________________________________________________________________________________________
+dropout (Dropout)               (None, 2048)         0           dense[0][0]                      
+__________________________________________________________________________________________________
+dense_1 (Dense)                 (None, 1024)         2098176     dropout[0][0]                    
+__________________________________________________________________________________________________
+dropout_1 (Dropout)             (None, 1024)         0           dense_1[0][0]                    
+__________________________________________________________________________________________________
+dense_2 (Dense)                 (None, 512)          524800      dropout_1[0][0]                  
+__________________________________________________________________________________________________
+dropout_2 (Dropout)             (None, 512)          0           dense_2[0][0]                    
+__________________________________________________________________________________________________
+dense_3 (Dense)                 (None, 256)          131328      dropout_2[0][0]                  
+__________________________________________________________________________________________________
+dropout_3 (Dropout)             (None, 256)          0           dense_3[0][0]                    
+__________________________________________________________________________________________________
+dense_4 (Dense)                 (None, 128)          32896       dropout_3[0][0]                  
+__________________________________________________________________________________________________
+dense_5 (Dense)                 (None, 5)            645         dense_4[0][0]                    
+==================================================================================================
+Total params: 28,786,981
+Trainable params: 28,752,549
+Non-trainable params: 34,432
+__________________________________________________________________________________________________
+</code></pre><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=kn>from</span> <span class=nn>sklearn.metrics</span> <span class=kn>import</span> <span class=n>cohen_kappa_score</span>
+<span class=k>class</span> <span class=nc>QWKCallback</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>callbacks</span><span class=o>.</span><span class=n>Callback</span><span class=p>):</span>
+    <span class=k>def</span> <span class=fm>__init__</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>validation_data</span><span class=p>):</span>
+        <span class=nb>super</span><span class=p>(</span><span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>callbacks</span><span class=o>.</span><span class=n>Callback</span><span class=p>,</span> <span class=bp>self</span><span class=p>)</span><span class=o>.</span><span class=fm>__init__</span><span class=p>()</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>X</span> <span class=o>=</span> <span class=n>validation_data</span><span class=p>[</span><span class=mi>0</span><span class=p>]</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>Y</span> <span class=o>=</span> <span class=n>validation_data</span><span class=p>[</span><span class=mi>1</span><span class=p>]</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>history</span> <span class=o>=</span> <span class=p>[]</span>
+        
+    <span class=k>def</span> <span class=nf>on_epoch_end</span><span class=p>(</span><span class=bp>self</span><span class=p>,</span> <span class=n>epoch</span><span class=p>,</span> <span class=n>logs</span><span class=o>=</span><span class=p>{}):</span>
+        <span class=n>pred</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>predict</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>X</span><span class=p>)</span>
+        <span class=n>score</span> <span class=o>=</span> <span class=n>cohen_kappa_score</span><span class=p>(</span>
+            <span class=n>np</span><span class=o>.</span><span class=n>argmax</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>Y</span><span class=p>,</span> <span class=n>axis</span><span class=o>=</span><span class=mi>1</span><span class=p>),</span> <span class=n>np</span><span class=o>.</span><span class=n>argmax</span><span class=p>(</span><span class=n>pred</span><span class=p>,</span> <span class=n>axis</span><span class=o>=</span><span class=mi>1</span><span class=p>),</span> <span class=n>labels</span><span class=o>=</span><span class=p>[</span><span class=mi>0</span><span class=p>,</span> <span class=mi>1</span><span class=p>,</span> <span class=mi>2</span><span class=p>,</span> <span class=mi>3</span><span class=p>,</span> <span class=mi>4</span><span class=p>],</span> <span class=n>weights</span><span class=o>=</span><span class=s2>&#34;quadratic&#34;</span>
+        <span class=p>)</span>
+        <span class=k>print</span><span class=p>((</span><span class=s2>&#34;Epoch {0} : QWK : {1}&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>epoch</span><span class=p>,</span> <span class=n>score</span><span class=p>)))</span>
+        <span class=bp>self</span><span class=o>.</span><span class=n>history</span><span class=o>.</span><span class=n>append</span><span class=p>(</span><span class=n>score</span><span class=p>)</span>
+        <span class=k>if</span><span class=p>(</span><span class=n>score</span> <span class=o>&gt;=</span> <span class=nb>max</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>history</span><span class=p>)):</span>
+            <span class=k>print</span><span class=p>(</span><span class=s2>&#34;Saving Checkpoint: {0}&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>score</span><span class=p>))</span>
+            <span class=bp>self</span><span class=o>.</span><span class=n>model</span><span class=o>.</span><span class=n>save</span><span class=p>(</span><span class=s2>&#34;../Resnet50_bestQWK.h5&#34;</span><span class=p>)</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>early_stopping</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>callbacks</span><span class=o>.</span><span class=n>EarlyStopping</span><span class=p>(</span><span class=n>monitor</span><span class=o>=</span><span class=s2>&#34;val_loss&#34;</span><span class=p>,</span> 
+    <span class=n>min_delta</span><span class=o>=</span><span class=mf>0.0001</span><span class=p>,</span> <span class=n>patience</span><span class=o>=</span><span class=mi>3</span><span class=p>,</span> <span class=n>verbose</span><span class=o>=</span><span class=mi>1</span><span class=p>,</span> <span class=n>mode</span><span class=o>=</span><span class=s2>&#34;auto&#34;</span><span class=p>)</span>
+<span class=n>reduce_lr</span> <span class=o>=</span> <span class=n>tf</span><span class=o>.</span><span class=n>keras</span><span class=o>.</span><span class=n>callbacks</span><span class=o>.</span><span class=n>ReduceLROnPlateau</span><span class=p>(</span><span class=n>monitor</span><span class=o>=</span><span class=s2>&#34;val_loss&#34;</span><span class=p>,</span> 
+    <span class=n>min_delta</span><span class=o>=</span><span class=mf>0.0004</span><span class=p>,</span> <span class=n>patience</span><span class=o>=</span><span class=mi>2</span><span class=p>,</span> <span class=n>factor</span><span class=o>=</span><span class=mf>0.1</span><span class=p>,</span> <span class=n>min_lr</span><span class=o>=</span><span class=mf>1e-6</span><span class=p>,</span> <span class=n>mode</span><span class=o>=</span><span class=s2>&#34;auto&#34;</span><span class=p>,</span> <span class=n>verbose</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>qwk</span> <span class=o>=</span> <span class=n>QWKCallback</span><span class=p>(</span><span class=n>validation_data</span><span class=p>)</span>
+<span class=n>model</span><span class=o>.</span><span class=n>fit_generator</span><span class=p>(</span>
+    <span class=n>generator</span><span class=o>=</span><span class=n>train_data</span><span class=p>,</span>
+    <span class=c1>#steps_per_epochs=EPOCH_STEPS,</span>
+    <span class=c1>#batch_size=BATCH_SIZE,</span>
+    <span class=n>epochs</span><span class=o>=</span><span class=n>EPOCHS</span><span class=p>,</span>
+    <span class=n>validation_data</span><span class=o>=</span><span class=n>validation_data</span><span class=p>,</span>
+    <span class=n>validation_steps</span><span class=o>=</span><span class=mi>30</span><span class=c1>#,</span>
+    <span class=c1>#callbacks=[early_stopping, reduce_lr]</span>
+<span class=p>)</span>
+</code></pre></div><pre><code>/opt/conda/lib/python3.6/site-packages/keras_preprocessing/image/image_data_generator.py:716: UserWarning: This ImageDataGenerator specifies `featurewise_center`, but it hasn't been fit on any training data. Fit it first by calling `.fit(numpy_data)`.
+  warnings.warn('This ImageDataGenerator specifies '
+/opt/conda/lib/python3.6/site-packages/keras_preprocessing/image/image_data_generator.py:724: UserWarning: This ImageDataGenerator specifies `featurewise_std_normalization`, but it hasn't been fit on any training data. Fit it first by calling `.fit(numpy_data)`.
+  warnings.warn('This ImageDataGenerator specifies '
+
+
+Epoch 1/25
+
+
+/opt/conda/lib/python3.6/site-packages/keras_preprocessing/image/image_data_generator.py:716: UserWarning: This ImageDataGenerator specifies `featurewise_center`, but it hasn't been fit on any training data. Fit it first by calling `.fit(numpy_data)`.
+  warnings.warn('This ImageDataGenerator specifies '
+/opt/conda/lib/python3.6/site-packages/keras_preprocessing/image/image_data_generator.py:724: UserWarning: This ImageDataGenerator specifies `featurewise_std_normalization`, but it hasn't been fit on any training data. Fit it first by calling `.fit(numpy_data)`.
+  warnings.warn('This ImageDataGenerator specifies '
+
+
+103/103 [==============================] - 503s 5s/step - loss: 1.2704 - acc: 0.5507 - val_loss: 3530.0762 - val_acc: 0.4816
+Epoch 2/25
+103/103 [==============================] - 448s 4s/step - loss: 1.0078 - acc: 0.6748 - val_loss: 21.8471 - val_acc: 0.4946
+Epoch 3/25
+103/103 [==============================] - 440s 4s/step - loss: 0.9933 - acc: 0.6663 - val_loss: 87.6621 - val_acc: 0.4903
+Epoch 4/25
+103/103 [==============================] - 443s 4s/step - loss: 0.9498 - acc: 0.6878 - val_loss: 190.1645 - val_acc: 0.5444
+Epoch 5/25
+103/103 [==============================] - 445s 4s/step - loss: 0.8962 - acc: 0.6878 - val_loss: 1022.9081 - val_acc: 0.1374
+Epoch 6/25
+103/103 [==============================] - 441s 4s/step - loss: 0.9300 - acc: 0.6854 - val_loss: 965.7076 - val_acc: 0.5584
+Epoch 7/25
+103/103 [==============================] - 448s 4s/step - loss: 0.9197 - acc: 0.6893 - val_loss: 14.3867 - val_acc: 0.4968
+Epoch 8/25
+103/103 [==============================] - 444s 4s/step - loss: 0.8321 - acc: 0.7127 - val_loss: 1.2525 - val_acc: 0.7100
+Epoch 9/25
+103/103 [==============================] - 448s 4s/step - loss: 0.8426 - acc: 0.7042 - val_loss: 1.7017 - val_acc: 0.6115
+Epoch 10/25
+103/103 [==============================] - 445s 4s/step - loss: 0.8222 - acc: 0.7130 - val_loss: 8.9885 - val_acc: 0.6450
+Epoch 11/25
+103/103 [==============================] - 437s 4s/step - loss: 0.8559 - acc: 0.7133 - val_loss: 202.3459 - val_acc: 0.5032
+Epoch 12/25
+103/103 [==============================] - 441s 4s/step - loss: 0.8583 - acc: 0.7118 - val_loss: 1.1618 - val_acc: 0.6645
+Epoch 13/25
+103/103 [==============================] - 447s 4s/step - loss: 0.8247 - acc: 0.7166 - val_loss: 1.2152 - val_acc: 0.7132
+Epoch 14/25
+103/103 [==============================] - 446s 4s/step - loss: 1.0001 - acc: 0.6602 - val_loss: 830.5764 - val_acc: 0.4329
+Epoch 15/25
+103/103 [==============================] - 447s 4s/step - loss: 0.9909 - acc: 0.6602 - val_loss: 43.9164 - val_acc: 0.5216
+Epoch 16/25
+103/103 [==============================] - 446s 4s/step - loss: 0.8771 - acc: 0.6969 - val_loss: 1.4656 - val_acc: 0.6418
+Epoch 17/25
+103/103 [==============================] - 448s 4s/step - loss: 0.8122 - acc: 0.7175 - val_loss: 1.0396 - val_acc: 0.6948
+Epoch 18/25
+103/103 [==============================] - 441s 4s/step - loss: 0.8221 - acc: 0.7118 - val_loss: 0.8343 - val_acc: 0.7284
+Epoch 19/25
+103/103 [==============================] - 447s 4s/step - loss: 0.7953 - acc: 0.7148 - val_loss: 1.1735 - val_acc: 0.6721
+Epoch 20/25
+103/103 [==============================] - 444s 4s/step - loss: 0.8761 - acc: 0.6990 - val_loss: 4.6178 - val_acc: 0.3831
+Epoch 21/25
+103/103 [==============================] - 442s 4s/step - loss: 0.8527 - acc: 0.7042 - val_loss: 1.2654 - val_acc: 0.6331
+Epoch 22/25
+103/103 [==============================] - 445s 4s/step - loss: 0.8787 - acc: 0.6984 - val_loss: 5.4739 - val_acc: 0.6699
+Epoch 23/25
+103/103 [==============================] - 439s 4s/step - loss: 0.8281 - acc: 0.7148 - val_loss: 0.8836 - val_acc: 0.6894
+Epoch 24/25
+103/103 [==============================] - 438s 4s/step - loss: 0.7883 - acc: 0.7212 - val_loss: 0.7943 - val_acc: 0.7045
+Epoch 25/25
+103/103 [==============================] - 438s 4s/step - loss: 0.8209 - acc: 0.7093 - val_loss: 1.5930 - val_acc: 0.6061
+
+
+
+
+
+&lt;tensorflow.python.keras.callbacks.History at 0x7fb2dac07c50&gt;
+</code></pre><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>filenames</span> <span class=o>=</span> <span class=n>test_data</span><span class=o>.</span><span class=n>filenames</span>
+<span class=n>classifications</span> <span class=o>=</span> <span class=n>model</span><span class=o>.</span><span class=n>predict_generator</span><span class=p>(</span><span class=n>test_data</span><span class=p>,</span> <span class=n>steps</span><span class=o>=</span><span class=nb>len</span><span class=p>(</span><span class=n>filenames</span><span class=p>))</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>results</span> <span class=o>=</span> <span class=n>pd</span><span class=o>.</span><span class=n>DataFrame</span><span class=p>({</span>
+    <span class=s2>&#34;id_code&#34;</span><span class=p>:</span> <span class=n>filenames</span><span class=p>,</span>
+    <span class=s2>&#34;diagnosis&#34;</span><span class=p>:</span> <span class=n>np</span><span class=o>.</span><span class=n>argmax</span><span class=p>(</span><span class=n>classifications</span><span class=p>,</span> <span class=n>axis</span><span class=o>=</span><span class=mi>1</span><span class=p>)</span>
+<span class=p>})</span>
+<span class=n>results</span><span class=p>[</span><span class=s2>&#34;id_code&#34;</span><span class=p>]</span> <span class=o>=</span> <span class=n>results</span><span class=p>[</span><span class=s2>&#34;id_code&#34;</span><span class=p>]</span><span class=o>.</span><span class=n>map</span><span class=p>(</span><span class=k>lambda</span> <span class=n>x</span><span class=p>:</span> <span class=nb>str</span><span class=p>(</span><span class=n>x</span><span class=p>)[:</span><span class=o>-</span><span class=mi>4</span><span class=p>]</span><span class=o>.</span><span class=n>split</span><span class=p>(</span><span class=s2>&#34;/&#34;</span><span class=p>)[</span><span class=mi>4</span><span class=p>])</span>
+<span class=n>results</span><span class=o>.</span><span class=n>head</span><span class=p>()</span>
+</code></pre></div><div><style scoped>.dataframe tbody tr th:only-of-type{vertical-align:middle}<pre><code>.dataframe tbody tr th{vertical-align:top}.dataframe thead th{text-align:right}</code></pre><p></style></p><table border=1 class=dataframe><thead><tr style=text-align:right><th></th><th>id_code</th><th>diagnosis</th></tr></thead><tbody><tr><th>0</th><td>0005cfc8afb6</td><td>0</td></tr><tr><th>1</th><td>003f0afdcd15</td><td>0</td></tr><tr><th>2</th><td>006efc72b638</td><td>0</td></tr><tr><th>3</th><td>00836aaacf06</td><td>0</td></tr><tr><th>4</th><td>009245722fa4</td><td>0</td></tr></tbody></table></div><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>file_name</span> <span class=o>=</span> <span class=s2>&#34;{0}_{1}.csv&#34;</span><span class=o>.</span><span class=n>format</span><span class=p>(</span><span class=n>algo</span><span class=p>,</span> <span class=n>klass</span><span class=p>)</span>
+<span class=n>results</span><span class=o>.</span><span class=n>to_csv</span><span class=p>(</span><span class=s2>&#34;submission.csv&#34;</span><span class=p>,</span> <span class=n>index</span><span class=o>=</span><span class=bp>False</span><span class=p>)</span>
+</code></pre></div><div class=highlight><pre class=chroma><code class=language-python data-lang=python><span class=n>results</span><span class=o>.</span><span class=n>diagnosis</span><span class=o>.</span><span class=n>value_counts</span><span class=p>()</span>
+
+<span class=nb>len</span><span class=p>(</span><span class=n>model</span><span class=o>.</span><span class=n>layers</span><span class=p>)</span>
+</code></pre></div><pre><code>322
+</code></pre><div class=highlight><pre class=chroma><code class=language-python data-lang=python>
+</code></pre></div></article></div><nav class="docs-toc d-none d-xl-block col-xl-4" aria-label="Secondary navigation"><div class=page-links><h3>On this page</h3><nav id=TableOfContents><ul><li><ul><li><a href=#transfer-learning>Transfer Learning</a></li></ul></li><li><a href=#resnet50-aptos-accuracy-0396>ResNet50 (APTOS Accuracy: 0.396)</a></li><li><a href=#inceptionv3-aptos-accuracy-0559>InceptionV3 (APTOS Accuracy: 0.559)</a></li><li><a href=#xception-aptos-accuracy-0509>Xception (APTOS Accuracy: 0.509)</a></li><li><a href=#nasnet-aptos-accuracy-tbd>NASNet (APTOS Accuracy: TBD)</a></li><li><a href=#preprocess>Preprocess</a></li><li><a href=#data-generator-train-validation-and-test-datasets>Data Generator: Train, Validation and Test Datasets</a></li><li><a href=#transfer-learning-assets>Transfer Learning Assets</a></li><li><a href=#optimize-compile-train-and-predict>Optimize, Compile, Train and Predict</a></li></ul></nav></div></nav></div></div></div><footer class="footer text-muted"><div class=container><div class=row><div class="col-lg-8 order-last order-lg-first"><ul class=list-inline><li class=list-inline-item>Copyright 2021 <a href=https://www.gowrishankar.info/>GowriShankar.info</a> All rights reserved</li></ul></div><div class="col-lg-8 order-first order-lg-last text-lg-right"><ul class=list-inline></ul></div></div></div></footer><script src=https://www.gowrishankar.info/main.f6b484f556ad1f3bcf6061082139a2f21fa759f13930c39a25fe4a9f78f35e64122c2d86dffd56e67b292dabbda4095d8077194f196e0e348441c106a9f3d40e.js integrity="sha512-9rSE9VatHzvPYGEIITmi8h+nWfE5MMOaJf5Kn3jzXmQSLC2G3/1W5nspLau9pAldgHcZTxluDjSEQcEGqfPUDg==" crossorigin=anonymous defer></script><script src=https://www.gowrishankar.info/index.min.40fbdfb10736b4ae2e8418029bcefc6932451f57ade989248c9808f28f22a174c021ae0dac3d9dba998e883ff6b3a0277eb4a22ce1b243e4fc9c3e042a44596c.js integrity="sha512-QPvfsQc2tK4uhBgCm878aTJFH1et6YkkjJgI8o8ioXTAIa4NrD2dupmOiD/2s6AnfrSiLOGyQ+T8nD4EKkRZbA==" crossorigin=anonymous defer></script></body></html>
