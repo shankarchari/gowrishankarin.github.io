@@ -1,9 +1,9 @@
 ---
 title: "Understanding Post-Synaptic Depression through Tsodyks-Markram Model by Solving Ordinary Differential Equation"
-description: "Understanding the building blocks of the brain and its responsive nature is always a frontier for conquest and fascinating area of research."
-lead: "Understanding the building blocks of the brain and its responsive nature is always a frontier for conquest and fascinating area of research."
-date: 2021-03-13T09:19:42+01:00
-lastmod: 2021-03-13T09:19:42+01:00
+description: "Understanding the building blocks of the brain and its responsive nature is always a frontier for conquest and fascinating area of research. In this post, let us explore the temporal data acquired from the somatic recordings that explains short term synaptic plasticity strongly affects the neural dynamics of neocortical networks."
+lead: "Understanding the building blocks of the brain and its responsive nature is always a frontier for conquest and fascinating area of research. In this post, let us explore the temporal data acquired from the somatic recordings that explains short term synaptic plasticity strongly affects the neural dynamics of neocortical networks."
+date: 2021-03-12T09:19:42+01:00
+lastmod: 2021-03-12T09:19:42+01:00
 draft: false
 weight: 10
 images: []
@@ -151,7 +151,7 @@ RESTING_POTENTIAL = np.mean(voltage[:voltage_baseline])
 
 
 ```python
-# Optimum values from Trodsky-Markram Model 
+# Optimum values from Tsodyks-Markram Model 
 T_REC = 415.56
 T_FAC = 163.12
 ASE = 1877.15
