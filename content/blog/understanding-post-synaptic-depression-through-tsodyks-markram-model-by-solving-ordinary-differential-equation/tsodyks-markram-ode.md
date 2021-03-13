@@ -8,7 +8,7 @@ draft: false
 weight: 10
 images: []
 contributors: ["Gowri Shankar"]
-image: "/blog/tsodyks-markram-ode/synapse.png"
+image: "/blog/understanding-post-synaptic-depression-through-tsodyks-markram-model-by-solving-ordinary-differential-equation/synapse.png"
 ---
 
 This is an attempt to understand and run a commentary of TM Model proposed by Misha V.Tsodyks and Henry Markram in their 1997 paper named [The neural code between neocortical pyramidal neurons depends on neurotransmitter release probability](https://www.pnas.org/content/94/2/719) that demonstrates the complex computational tasks performed by the synapses in the neocortical pyramidal neuron pairs for a given stimuli. 
