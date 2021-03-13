@@ -10,7 +10,7 @@ writes: [{
     title: "Understanding Post-Synaptic Depression through Tsodyks-Markram Model by Solving Ordinary Differential Equation",
     lead: "Understanding the building blocks of the brain and its responsive nature is always a frontier for conquest and fascinating area of research. In this post, let us explore the temporal data acquired from the somatic recordings that explains short term synaptic plasticity strongly affects the neural dynamics of neocortical networks.",
     link: "blog/understanding-post-synaptic-depression-through-tsodyks-markram-model-by-solving-ordinary-differential-equation/",
-    image: "blog/understanding-post-synaptic-depression-through-tsodyks-markram-model-by-solving-ordinary-differential-equation/auto_diff.png"
+    image: "blog/understanding-post-synaptic-depression-through-tsodyks-markram-model-by-solving-ordinary-differential-equation/synapse.png"
 }, {
     title: "Automatic Differentiation Using Gradient Tapes",
     lead: "As a Data Scientist or Deep Learning Researcher, one must have a deeper knowledge in various differentiation techniques due to the fact that gradient based optimization techniques like Backpropagation algorithms are critical for model efficiency and convergence.",
