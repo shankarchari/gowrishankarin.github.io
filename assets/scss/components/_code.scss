@@ -30,27 +30,14 @@ pre code {
 }
 
 .chroma {
-  background: $beige;
-  color: $black;
-
-  /* Use linear-gradient for background image */
-  font-family: "Lucida Console", "Courier New", monospace;
-  font-size: 16px;
   border: 1px solid $blue-300;
-  //width: 55rem;
   border-left: 12px solid $blue-300;
   border-radius: 5px;
-  padding: 14px;
+}
 
-  /* Fixed line height */
-  line-height: 24px;
-
-  /* Size background so that the height is 2x line-height */
-  background-size: 100% 50px;
-
-  /* Offset the background along the y-axis by top padding */
-  background-position: 0 14px;
-  background-image: linear-gradient(180deg, #eee 50%, #fff 50%);
+code[class*=language-],
+pre[class*=language-] {
+  font-size: 0.8rem;
 }
 
 .mjx-chtml {
