@@ -31,14 +31,19 @@ writes: [{
     lead: "How to approach compute complexities, ie time and space complexity problems while designing a software system to avoid obvious bottlenecks in an abstract fashion.",
     link: "blog/time-and-space-complexity-5-governing-rules",
     image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/time-and-space-complexity-5-governing-rules/teaser.png"
-}, {
-    title: "Tensorflow 2: Introduction, Feature Engineering and Metrics",
-    lead: "Introducing TF2 through Train, Test, Valid splitting, Imputation, Bias/Overfit handlers, One Hot Encoding, Embeddings, Tensor Slices, Keras APIs, metrics including accuracy, precision and ROC curve",
-    link: "blog/tensorflow-2-introduction-feature-engineering-and-metrics/",
-    image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/tensorflow-2-introduction-feature-engineering-and-metrics/teaser.png"
+# }, {
+#     title: "Tensorflow 2: Introduction, Feature Engineering and Metrics",
+#     lead: "Introducing TF2 through Train, Test, Valid splitting, Imputation, Bias/Overfit handlers, One Hot Encoding, Embeddings, Tensor Slices, Keras APIs, metrics including accuracy, precision and ROC curve",
+#     link: "blog/tensorflow-2-introduction-feature-engineering-and-metrics/",
+#     image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/tensorflow-2-introduction-feature-engineering-and-metrics/teaser.png"
 }]
 
 reads: [{
+    title: "The Neural Code between Neocortical Pyramidal Neurons Depends on Neurotransmitter Release Probability - PNAS",
+    lead: "This 1997 paper brings bio-physics, electro-physiology, neuroscience, differential equations etc in one place. A good starting point to understand neural plasticity, synpases, neurotransmitters, ordinary differential equations",
+    link: "https://www.pnas.org/content/pnas/94/2/719.full.pdf",
+    image: ""
+}, {
     title: "Temporal Fusion Transformers for Interpretable Multi-horizon Time Series Forecasting - GOOGLE RESEARCH",
     lead: "Multi-horizon forecasting problems often contain a complex mix of inputs -- including static (i.e. time-invariant) covariates, known future inputs, and other exogenous time series that are only observed historically -- without any prior information on how they interact with the target.",
     link: "https://arxiv.org/abs/1912.09363",

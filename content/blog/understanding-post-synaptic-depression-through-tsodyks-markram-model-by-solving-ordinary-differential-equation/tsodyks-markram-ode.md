@@ -375,7 +375,8 @@ Have we accomplished the following objectives that we have set...
 
 ### References
 - [The neural code between neocortical pyramidal neurons depends on neurotransmitter release probability](https://www.pnas.org/content/pnas/94/2/719.full.pdf)
-- [https://arxiv.org/pdf/1309.7966.pdf](https://arxiv.org/pdf/1309.7966.pdf)
+- [Short-term synaptic plasticity in the deterministic Tsodyks–Markram model leads to unpredictable
+network dynamics](https://arxiv.org/pdf/1309.7966.pdf)
 - [Synapses in the Nervous System - Where Nerve Impulses Are Passed from Neuron to Neuron](https://www.verywellhealth.com/synapse-anatomy-2795867)
 - [Tsodyks-Markram model of short-term synaptic plasticity](https://github.com/BlueBrain/BluePyOpt/blob/master/examples/tsodyksmarkramstp/tsodyksmarkramstp.ipynb)
 
