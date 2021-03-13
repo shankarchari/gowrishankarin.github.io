@@ -6,7 +6,7 @@ date: 2021-03-12T09:19:42+01:00
 lastmod: 2021-03-12T09:19:42+01:00
 draft: false
 weight: 10
-images: []
+images: ["synapse.png"]
 contributors: ["Gowri Shankar"]
 image: "/blog/understanding-post-synaptic-depression-through-tsodyks-markram-model-by-solving-ordinary-differential-equation/synapse.png"
 ---
