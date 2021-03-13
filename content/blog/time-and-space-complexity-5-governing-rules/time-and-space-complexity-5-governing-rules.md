@@ -6,9 +6,9 @@ date: 2020-02-28T09:19:42+01:00
 lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
-images: []
+images: ["teaser.png"]
 contributors: ["Gowri Shankar"]
-image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/time-and-space-complexity-5-governing-rules/teaser.png"
+image: "/blog/time-and-space-complexity-5-governing-rules/teaser.png"
 ---
 
 ## Story Behind

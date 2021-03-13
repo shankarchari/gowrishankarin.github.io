@@ -6,7 +6,7 @@ date: 2020-07-04T09:19:42+01:00
 lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
-images: []
+images: ["anime.png"]
 contributors: ["Gowri Shankar"]
 image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/gradcam-model-interpretability-vgg16-xception-networks/anime.gif"
 ---

@@ -6,7 +6,7 @@ date: 2020-08-14T09:19:42+01:00
 lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
-images: []
+images: ["output_3_0.png"]
 contributors: ["Gowri Shankar"]
 image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/roll-your-sleeves-let-us-do-some-partial-derivatives./output_3_0.png"
 ---

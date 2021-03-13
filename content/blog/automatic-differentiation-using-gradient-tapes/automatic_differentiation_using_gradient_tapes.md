@@ -6,7 +6,7 @@ date: 2020-12-14T09:19:42+01:00
 lastmod: 2021-03-03T09:19:42+01:00
 draft: false
 weight: 10
-images: []
+images: ["auto_diff.png"]
 contributors: ["Gowri Shankar"]
 image: "/blog/automatic-differentiation-using-gradient-tapes/auto_diff.png"
 ---

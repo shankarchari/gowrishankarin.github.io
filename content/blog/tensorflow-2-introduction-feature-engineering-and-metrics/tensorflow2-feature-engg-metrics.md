@@ -6,7 +6,7 @@ date: 2020-04-04T09:19:42+01:00
 lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
-images: []
+images: ["teaser.png"]
 contributors: ["Gowri Shankar"]
 image: "https://gowrishankarin.github.io/gowrishankarin_2/blog/tensorflow-2-introduction-feature-engineering-and-metrics/teaser.png"
 ---

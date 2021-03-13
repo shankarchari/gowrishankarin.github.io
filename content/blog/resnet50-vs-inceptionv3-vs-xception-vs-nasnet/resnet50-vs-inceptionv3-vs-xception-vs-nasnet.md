@@ -6,7 +6,7 @@ date: 2019-06-28T09:19:42+01:00
 lastmod: 2021-02-28T09:19:42+01:00
 draft: false
 weight: 10
-images: []
+images: ["teaser.png"]
 contributors: ["Gowri Shankar"]
 image: "https://miro.medium.com/max/1000/1*jQZ_oJ3VZbVWiBWuc5SMMg.png"
 ---
